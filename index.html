@@ -1,132 +1,808 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DA FARE</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #f5f5f7;
-      margin: 0;
-      padding: 24px;
-      color: #111;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+<title>DA FARE — dal caos all'azione</title>
 
-    .app {
-      max-width: 600px;
-      margin: auto;
-    }
+<style>
+:root {
+  --bg: #f4f4f5;
+  --card: #ffffff;
+  --text: #111111;
+  --muted: #71717a;
+  --border: #e4e4e7;
+  --dark: #111111;
+  --soft: #f8f8f8;
+  --danger: #b42318;
+  --warning: #a15c00;
+  --success: #16794c;
+}
 
-    h1 {
-      font-size: 38px;
-      margin-bottom: 8px;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    .subtitle {
-      color: #666;
-      margin-bottom: 28px;
-    }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+               "SF Pro Text", Helvetica, Arial, sans-serif;
+}
 
-    textarea {
-      width: 100%;
-      min-height: 180px;
-      box-sizing: border-box;
-      border: 1px solid #ddd;
-      border-radius: 16px;
-      padding: 16px;
-      font-size: 17px;
-      resize: vertical;
-      background: white;
-    }
+.app {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 28px 18px 60px;
+}
 
-    button {
-      width: 100%;
-      margin-top: 14px;
-      padding: 16px;
-      border: 0;
-      border-radius: 14px;
-      background: #111;
-      color: white;
-      font-size: 17px;
-      font-weight: 600;
-    }
+.header {
+  padding: 12px 4px 28px;
+}
 
-    #result {
-      margin-top: 24px;
-      background: white;
-      border-radius: 16px;
-      padding: 20px;
-      display: none;
-    }
+.logo {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 
-    .step {
-      padding: 14px 0;
-      border-bottom: 1px solid #eee;
-    }
-  </style>
+h1 {
+  margin: 10px 0 8px;
+  font-size: clamp(38px, 9vw, 64px);
+  line-height: .95;
+  letter-spacing: -.05em;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.5;
+  max-width: 560px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.04);
+}
+
+textarea {
+  width: 100%;
+  min-height: 210px;
+  resize: vertical;
+  border: 0;
+  outline: none;
+  background: var(--soft);
+  border-radius: 18px;
+  padding: 18px;
+  font: inherit;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+textarea::placeholder {
+  color: #999;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+button {
+  border: 0;
+  border-radius: 14px;
+  padding: 15px 18px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.primary {
+  flex: 1;
+  background: var(--dark);
+  color: white;
+}
+
+.secondary {
+  background: #ededee;
+  color: #222;
+}
+
+button:active {
+  transform: scale(.99);
+}
+
+.examples {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.result {
+  display: none;
+  margin-top: 18px;
+}
+
+.result.show {
+  display: block;
+}
+
+.summary {
+  border-radius: 20px;
+  padding: 20px;
+  background: #111;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.summary-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  opacity: .65;
+  font-weight: 800;
+}
+
+.summary h2 {
+  margin: 7px 0 8px;
+  font-size: 25px;
+  letter-spacing: -.03em;
+}
+
+.summary p {
+  margin: 0;
+  color: #d4d4d8;
+  line-height: 1.5;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.info {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.info-label {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 800;
+}
+
+.info-value {
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: 750;
+}
+
+.section {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 12px;
+}
+
+.section h3 {
+  margin: 0 0 15px;
+  font-size: 18px;
+}
+
+.first-action {
+  background: #f1f1f1;
+  border-radius: 15px;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps li {
+  display: flex;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid #eee;
+  line-height: 1.45;
+}
+
+.steps li:last-child {
+  border-bottom: 0;
+}
+
+.number {
+  min-width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #111;
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 8px 11px;
+  background: #f1f1f1;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.priority-high {
+  color: var(--danger);
+}
+
+.priority-medium {
+  color: var(--warning);
+}
+
+.priority-low {
+  color: var(--success);
+}
+
+.empty {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.footer {
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+  padding: 25px 0 0;
+}
+
+@media (max-width: 560px) {
+  .app {
+    padding: 18px 13px 45px;
+  }
+
+  .card {
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}
+</style>
 </head>
 
 <body>
-  <div class="app">
-    <h1>DA FARE</h1>
 
+<div class="app">
+
+  <header class="header">
+    <div class="logo">DA FARE</div>
+    <h1>Dal caos<br>all'azione.</h1>
     <div class="subtitle">
-      Trasforma un problema confuso in azioni chiare.
+      Incolla una situazione, una richiesta o un problema.
+      DA FARE estrae ciò che conta e ti mostra cosa fare per primo.
     </div>
+  </header>
+
+  <main class="card">
 
     <textarea id="input"
-      placeholder="Scrivi qui qualsiasi cosa devi gestire..."></textarea>
+      placeholder="Esempio:
 
-    <button onclick="organize()">
-      Trasforma in azioni
-    </button>
+Ho ricevuto una bolletta della luce di 87,40 €. Devo pagarla entro il 28 settembre. Non so però se la precedente è già stata pagata.
 
-    <div id="result"></div>
+Oppure incolla qualsiasi altra cosa devi gestire..."></textarea>
+
+    <div class="actions">
+      <button class="primary" onclick="analyze()">Trasforma in azioni</button>
+      <button class="secondary" onclick="clearAll()">Pulisci</button>
+    </div>
+
+    <div class="examples">
+      Prova con una bolletta, una prenotazione, una richiesta ricevuta,
+      una scadenza, un acquisto o semplicemente un problema che devi risolvere.
+    </div>
+
+    <div id="result" class="result"></div>
+
+  </main>
+
+  <div class="footer">
+    DA FARE — prototipo V0.2
   </div>
 
-  <script>
-    function organize() {
-      const text = document.getElementById("input").value.trim();
-      const result = document.getElementById("result");
+</div>
 
-      if (!text) {
-        result.style.display = "block";
-        result.innerHTML = "Scrivi prima cosa devi gestire.";
-        return;
-      }
+<script>
 
-      result.style.display = "block";
+function normalize(text) {
+  return text
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
+}
 
-      result.innerHTML = `
-        <h2>Il tuo piano</h2>
+function escapeHTML(text) {
+  return text
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
 
-        <div class="step">
-          <strong>1. Capisci il problema</strong><br>
-          Rileggi ciò che hai scritto e individua cosa deve essere risolto.
-        </div>
+function extractMoney(text) {
+  const matches = text.match(
+    /(?:€\s?\d+(?:[.,]\d{1,2})?|\d+(?:[.,]\d{1,2})?\s?€|\d+(?:[.,]\d{1,2})?\s?euro)/gi
+  );
 
-        <div class="step">
-          <strong>2. Individua la prima azione</strong><br>
-          Scegli la cosa più piccola che puoi fare subito.
-        </div>
+  if (!matches) return [];
 
-        <div class="step">
-          <strong>3. Raccogli ciò che serve</strong><br>
-          Prepara documenti, informazioni o strumenti necessari.
-        </div>
+  return [...new Set(matches)];
+}
 
-        <div class="step">
-          <strong>4. Esegui</strong><br>
-          Completa la prima azione prima di passare alla successiva.
-        </div>
+function extractDates(text) {
+  const results = [];
 
-        <div class="step">
-          <strong>5. Controlla</strong><br>
-          Verifica se il problema è realmente risolto.
-        </div>
-      `;
+  const numericDates = text.match(
+    /\b(?:0?[1-9]|[12]\d|3[01])[\/.-](?:0?[1-9]|1[0-2])[\/.-](?:20)?\d{2}\b/g
+  );
+
+  if (numericDates) results.push(...numericDates);
+
+  const monthDates = text.match(
+    /\b(?:entro il |il |scadenza[: ]*)?(?:[0-3]?\d)\s+(?:gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre)\b/gi
+  );
+
+  if (monthDates) results.push(...monthDates);
+
+  const relative = text.match(
+    /\b(?:oggi|domani|dopodomani|entro domani|questa settimana|la prossima settimana)\b/gi
+  );
+
+  if (relative) results.push(...relative);
+
+  return [...new Set(results)];
+}
+
+function detectCategory(text) {
+
+  const categories = [
+    {
+      name: "Bolletta / pagamento",
+      words: [
+        "bolletta","fattura","pagare","pagamento","pagata",
+        "pagato","scadenza","iban","bonifico","addebito"
+      ]
+    },
+    {
+      name: "Prenotazione / appuntamento",
+      words: [
+        "prenotazione","prenotato","appuntamento","visita",
+        "hotel","volo","treno","aereo","ristorante","biglietto"
+      ]
+    },
+    {
+      name: "Acquisto / ordine",
+      words: [
+        "ordine","acquisto","acquistato","spedizione","consegna",
+        "reso","rimborso","scontrino","garanzia"
+      ]
+    },
+    {
+      name: "Lavoro",
+      words: [
+        "lavoro","capo","collega","turno","azienda",
+        "contratto","ferie","stipendio","documento"
+      ]
+    },
+    {
+      name: "Documento / pratica",
+      words: [
+        "documento","modulo","domanda","pratica","firma",
+        "firmare","richiesta","comune","ufficio"
+      ]
+    },
+    {
+      name: "Casa",
+      words: [
+        "casa","affitto","condominio","caldaia","luce",
+        "gas","acqua","internet","manutenzione"
+      ]
     }
-  </script>
+  ];
+
+  let best = {
+    name: "Problema / attività",
+    score: 0
+  };
+
+  for (const category of categories) {
+    let score = 0;
+
+    for (const word of category.words) {
+      if (text.includes(word)) score++;
+    }
+
+    if (score > best.score) {
+      best = {
+        name: category.name,
+        score
+      };
+    }
+  }
+
+  return best.name;
+}
+
+function detectPriority(text, dates) {
+
+  const urgentWords = [
+    "urgente","subito","oggi","domani","scadenza",
+    "entro","ultimo giorno","bloccato","blocco",
+    "multa","penale","ritardo"
+  ];
+
+  let score = 0;
+
+  for (const word of urgentWords) {
+    if (text.includes(word)) score++;
+  }
+
+  if (dates.length > 0) score++;
+
+  if (score >= 3) {
+    return {
+      label: "ALTA",
+      className: "priority-high"
+    };
+  }
+
+  if (score >= 1) {
+    return {
+      label: "MEDIA",
+      className: "priority-medium"
+    };
+  }
+
+  return {
+    label: "BASSA",
+    className: "priority-low"
+  };
+}
+
+function detectContacts(original) {
+
+  const emails = original.match(
+    /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi
+  ) || [];
+
+  const phones = original.match(
+    /(?:\+39[\s.-]?)?(?:3\d{2}[\s.-]?\d{6,7}|0\d{1,3}[\s.-]?\d{5,8})/g
+  ) || [];
+
+  return {
+    emails: [...new Set(emails)],
+    phones: [...new Set(phones)]
+  };
+}
+
+function buildSteps(category, text, dates, money) {
+
+  const steps = [];
+
+  if (category === "Bolletta / pagamento") {
+
+    steps.push("Controlla lo stato del pagamento o della bolletta precedente.");
+
+    if (money.length) {
+      steps.push("Verifica che l'importo richiesto corrisponda a quello indicato nel documento.");
+    }
+
+    if (dates.length) {
+      steps.push("Segna la scadenza e assicurati di completare il pagamento prima del termine.");
+    } else {
+      steps.push("Individua la data di scadenza prima di procedere.");
+    }
+
+    steps.push("Effettua il pagamento utilizzando il metodo indicato.");
+    steps.push("Conserva la ricevuta o la conferma del pagamento.");
+
+  } else if (category === "Prenotazione / appuntamento") {
+
+    steps.push("Controlla data, ora e luogo della prenotazione.");
+
+    if (dates.length) {
+      steps.push("Segna la data dell'appuntamento o della partenza.");
+    }
+
+    steps.push("Verifica eventuali documenti o informazioni necessari.");
+    steps.push("Controlla le condizioni di modifica o cancellazione.");
+    steps.push("Conserva la conferma della prenotazione.");
+
+  } else if (category === "Acquisto / ordine") {
+
+    steps.push("Controlla lo stato attuale dell'ordine o della richiesta.");
+
+    if (money.length) {
+      steps.push("Verifica importo pagato e condizioni dell'acquisto.");
+    }
+
+    steps.push("Controlla eventuale data prevista per consegna, reso o rimborso.");
+    steps.push("Se qualcosa non coincide, contatta il venditore o il servizio clienti.");
+    steps.push("Conserva ricevute, numero d'ordine e comunicazioni.");
+
+  } else if (category === "Lavoro") {
+
+    steps.push("Identifica esattamente cosa ti viene richiesto.");
+    steps.push("Raccogli i documenti o le informazioni necessarie.");
+    steps.push("Stabilisci la prima azione concreta da completare.");
+    steps.push("Esegui la richiesta e conserva eventuali conferme.");
+    steps.push("Controlla che l'attività sia effettivamente conclusa.");
+
+  } else if (category === "Documento / pratica") {
+
+    steps.push("Identifica quale documento o pratica devi completare.");
+    steps.push("Controlla quali informazioni o allegati sono necessari.");
+    steps.push("Completa e verifica il modulo o la richiesta.");
+    steps.push("Invia la documentazione attraverso il canale richiesto.");
+    steps.push("Conserva una copia e la ricevuta dell'invio.");
+
+  } else if (category === "Casa") {
+
+    steps.push("Identifica esattamente quale problema o attività riguarda la casa.");
+    steps.push("Controlla eventuali scadenze, costi o appuntamenti.");
+    steps.push("Raccogli le informazioni necessarie per intervenire.");
+    steps.push("Esegui la prima azione concreta.");
+    steps.push("Verifica che il problema sia risolto.");
+
+  } else {
+
+    steps.push("Definisci esattamente cosa deve essere risolto.");
+    steps.push("Individua la prima azione concreta che puoi fare subito.");
+    steps.push("Raccogli le informazioni o i documenti necessari.");
+    steps.push("Completa le azioni una alla volta.");
+    steps.push("Controlla che il problema sia realmente risolto.");
+  }
+
+  return steps;
+}
+
+function buildFirstAction(category, text, dates, money) {
+
+  if (category === "Bolletta / pagamento") {
+    if (text.includes("non so") || text.includes("non ricordo")) {
+      return "Controlla subito se il pagamento precedente risulta effettuato.";
+    }
+    return "Controlla la bolletta e individua importo e scadenza.";
+  }
+
+  if (category === "Prenotazione / appuntamento") {
+    return "Controlla subito data, ora e luogo della prenotazione.";
+  }
+
+  if (category === "Acquisto / ordine") {
+    return "Controlla subito lo stato dell'ordine e l'eventuale data prevista.";
+  }
+
+  if (category === "Lavoro") {
+    return "Individua esattamente cosa ti è stato richiesto.";
+  }
+
+  if (category === "Documento / pratica") {
+    return "Controlla cosa devi compilare o inviare e quali documenti servono.";
+  }
+
+  if (category === "Casa") {
+    return "Definisci il problema preciso e individua la prima azione necessaria.";
+  }
+
+  return "Scrivi o individua la prima azione concreta che puoi completare adesso.";
+}
+
+function buildSummary(category, text) {
+
+  const firstSentence = text
+    .split(/[.!?]/)
+    .map(x => x.trim())
+    .find(x => x.length > 15);
+
+  if (firstSentence) {
+    return firstSentence;
+  }
+
+  return "Hai inserito una situazione che richiede una sequenza di azioni.";
+}
+
+function analyze() {
+
+  const original = document.getElementById("input").value.trim();
+  const result = document.getElementById("result");
+
+  if (!original) {
+    result.classList.add("show");
+    result.innerHTML = `
+      <div class="section">
+        <h3>Mi serve qualcosa da analizzare.</h3>
+        <div class="empty">
+          Incolla una situazione, una richiesta, una scadenza
+          o un problema.
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const text = normalize(original);
+
+  const money = extractMoney(original);
+  const dates = extractDates(original);
+  const category = detectCategory(text);
+  const priority = detectPriority(text, dates);
+  const contacts = detectContacts(original);
+  const steps = buildSteps(category, text, dates, money);
+  const firstAction = buildFirstAction(category, text, dates, money);
+  const summary = buildSummary(category, original);
+
+  const moneyHTML = money.length
+    ? money.map(x => `<span class="chip">${escapeHTML(x)}</span>`).join("")
+    : `<span class="empty">Nessun importo rilevato</span>`;
+
+  const datesHTML = dates.length
+    ? dates.map(x => `<span class="chip">${escapeHTML(x)}</span>`).join("")
+    : `<span class="empty">Nessuna scadenza rilevata</span>`;
+
+  const contactsHTML =
+    [...contacts.emails, ...contacts.phones]
+      .map(x => `<span class="chip">${escapeHTML(x)}</span>`)
+      .join("") ||
+    `<span class="empty">Nessun contatto rilevato</span>`;
+
+  const stepsHTML = steps.map((step, index) => `
+    <li>
+      <span class="number">${index + 1}</span>
+      <span>${escapeHTML(step)}</span>
+    </li>
+  `).join("");
+
+  result.classList.add("show");
+
+  result.innerHTML = `
+    <div class="summary">
+      <div class="summary-label">Analisi</div>
+      <h2>${escapeHTML(category)}</h2>
+      <p>${escapeHTML(summary)}</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="info">
+        <div class="info-label">Priorità</div>
+        <div class="info-value ${priority.className}">
+          ${priority.label}
+        </div>
+      </div>
+
+      <div class="info">
+        <div class="info-label">Azioni</div>
+        <div class="info-value">
+          ${steps.length}
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section">
+      <h3>👉 Fai questo adesso</h3>
+
+      <div class="first-action">
+        ${escapeHTML(firstAction)}
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>📋 Sequenza</h3>
+
+      <ol class="steps">
+        ${stepsHTML}
+      </ol>
+    </div>
+
+    <div class="grid">
+
+      <div class="section">
+        <h3>📅 Scadenze</h3>
+        <div class="chips">
+          ${datesHTML}
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>💰 Importi</h3>
+        <div class="chips">
+          ${moneyHTML}
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section">
+      <h3>📞 Contatti rilevati</h3>
+      <div class="chips">
+        ${contactsHTML}
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>⚠️ Cosa controllare</h3>
+
+      <ul class="steps">
+        <li>
+          <span class="number">!</span>
+          <span>
+            Verifica sempre le informazioni direttamente
+            sul documento o sulla comunicazione originale.
+          </span>
+        </li>
+
+        <li>
+          <span class="number">!</span>
+          <span>
+            Se manca una data, un importo o un'informazione
+            fondamentale, non dare per scontato che sia presente.
+          </span>
+        </li>
+      </ul>
+    </div>
+  `;
+
+  result.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+function clearAll() {
+  document.getElementById("input").value = "";
+  const result = document.getElementById("result");
+  result.innerHTML = "";
+  result.classList.remove("show");
+}
+
+</script>
+
 </body>
 </html>
