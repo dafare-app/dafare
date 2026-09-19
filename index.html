@@ -10,114 +10,158 @@
 
 body{
   margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:#f5f5f7;
-  color:#171717;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+  color:#111;
 }
 
 .container{
-  width:min(920px,calc(100% - 28px));
-  margin:auto;
-  padding:45px 0 70px
+  max-width:900px;
+  margin:0 auto;
+  padding:32px 18px 60px;
 }
 
-.logo{
-  font-size:38px;
-  font-weight:800;
-  letter-spacing:-1.5px
+header{
+  margin-bottom:24px;
+}
+
+h1{
+  margin:0;
+  font-size:42px;
+  letter-spacing:-1.5px;
 }
 
 .subtitle{
+  margin-top:5px;
   color:#666;
-  margin:7px 0 25px;
-  font-size:17px
+  font-size:17px;
 }
 
 textarea{
   width:100%;
   min-height:190px;
-  padding:20px;
-  border:1px solid #d7d7d7;
-  border-radius:18px;
-  background:white;
-  font:inherit;
+  resize:vertical;
+  border:1px solid #ddd;
+  border-radius:16px;
+  padding:18px;
   font-size:17px;
   line-height:1.5;
-  resize:vertical;
-  outline:none
+  outline:none;
+  background:white;
 }
 
-textarea:focus{border-color:#999}
+textarea:focus{
+  border-color:#111;
+}
 
 .buttons{
   display:flex;
   gap:10px;
-  margin-top:13px
+  margin:12px 0 24px;
 }
 
 button{
   border:0;
   border-radius:12px;
-  padding:13px 19px;
-  font-weight:700;
-  font-size:15px;
-  cursor:pointer
+  padding:13px 20px;
+  font-size:16px;
+  cursor:pointer;
 }
 
-.primary{background:#171717;color:white}
-.secondary{background:#e7e7e7;color:#222}
+.primary{
+  background:#111;
+  color:white;
+}
 
-#output{margin-top:25px}
+.secondary{
+  background:#e8e8ed;
+  color:#111;
+}
+
+.hidden{
+  display:none;
+}
 
 .card{
   background:white;
-  border:1px solid #e5e5e5;
   border-radius:18px;
-  padding:21px;
-  margin-bottom:13px
+  padding:20px;
+  margin-top:14px;
+  box-shadow:0 2px 12px rgba(0,0,0,.05);
 }
 
 .card h2{
-  margin:0 0 12px;
-  font-size:16px
+  margin:0 0 15px;
+  font-size:20px;
+}
+
+.priority{
+  display:inline-block;
+  padding:5px 10px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:700;
+  margin-left:7px;
+  background:#eee;
+}
+
+.priority.high{
+  background:#ffdede;
+}
+
+.priority.medium{
+  background:#fff0c9;
+}
+
+.priority.low{
+  background:#def5df;
 }
 
 .big-action{
-  font-size:23px;
-  font-weight:800;
-  letter-spacing:-.3px
-}
-
-.tag{
-  display:inline-block;
-  background:#eee;
-  border-radius:999px;
-  padding:6px 10px;
-  margin:0 5px 5px 0;
-  font-size:13px;
-  font-weight:700
-}
-
-p{
-  line-height:1.5;
-  margin:9px 0
+  font-size:24px;
+  font-weight:700;
+  line-height:1.3;
 }
 
 ol,ul{
-  margin:8px 0 0;
-  padding-left:23px
+  margin:0;
+  padding-left:24px;
 }
 
 li{
   margin:8px 0;
-  line-height:1.45
+  line-height:1.4;
 }
 
-.empty{color:#777}
+.fact{
+  padding:10px 0;
+  border-bottom:1px solid #eee;
+}
+
+.fact:last-child{
+  border-bottom:0;
+}
+
+.label{
+  font-weight:700;
+}
+
+.empty{
+  color:#888;
+}
+
+.money{
+  font-size:20px;
+  font-weight:700;
+}
+
+.warning{
+  color:#8a5a00;
+}
 
 @media(max-width:600px){
-  .container{padding-top:28px}
-  .logo{font-size:32px}
+  h1{font-size:34px}
+  .container{padding-top:22px}
   .buttons{flex-direction:column}
   button{width:100%}
 }
@@ -128,827 +172,1089 @@ li{
 
 <div class="container">
 
-<div class="logo">DA FARE</div>
+<header>
+  <h1>DA FARE</h1>
+  <div class="subtitle">Dal caos all’azione.</div>
+</header>
 
-<div class="subtitle">
-Dal caos all'azione.
-</div>
-
-<textarea id="input" placeholder="Scrivi quello che devi fare...
-
-Esempio:
-Devo consegnare il modulo al Comune venerdì mattina.
-Il modulo è già compilato ma devo ancora firmarlo e portarlo con me."></textarea>
+<textarea id="input"
+placeholder="Scrivi qui tutto quello che devi fare, anche in modo disordinato..."></textarea>
 
 <div class="buttons">
-<button class="primary" onclick="analyze()">Trasforma in azioni</button>
-<button class="secondary" onclick="clearAll()">Cancella</button>
+  <button class="primary" onclick="analyze()">Analizza</button>
+  <button class="secondary" onclick="clearAll()">Cancella</button>
 </div>
 
-<div id="output"></div>
+<div id="output" class="hidden">
+
+  <div class="card">
+    <h2>Analisi</h2>
+    <div id="analysis"></div>
+  </div>
+
+  <div class="card">
+    <h2>FAI QUESTO ADESSO</h2>
+    <div id="firstAction" class="big-action"></div>
+  </div>
+
+  <div class="card">
+    <h2>Sequenza</h2>
+    <ol id="sequence"></ol>
+  </div>
+
+  <div class="card">
+    <h2>Cosa ho capito</h2>
+
+    <div class="fact">
+      <span class="label">Cosa devi fare:</span>
+      <div id="tasks"></div>
+    </div>
+
+    <div class="fact">
+      <span class="label">Cosa manca:</span>
+      <div id="missing"></div>
+    </div>
+
+    <div class="fact">
+      <span class="label">Cosa è già fatto:</span>
+      <div id="done"></div>
+    </div>
+
+    <div class="fact">
+      <span class="label">Luogo:</span>
+      <div id="place"></div>
+    </div>
+
+    <div class="fact">
+      <span class="label">Data / Ora:</span>
+      <div id="dateTime"></div>
+    </div>
+
+    <div class="fact">
+      <span class="label">Da portare / Ricordare:</span>
+      <div id="remember"></div>
+    </div>
+  </div>
+
+  <div id="moneyCard" class="card hidden">
+    <h2>Importi</h2>
+    <div id="money" class="money"></div>
+  </div>
+
+  <div id="warningCard" class="card hidden">
+    <h2>Cosa controllare</h2>
+    <ul id="warnings"></ul>
+  </div>
+
+</div>
 
 </div>
 
 <script>
 
-/* =========================================================
+/* =========================
    UTILITÀ
-========================================================= */
+========================= */
 
 function normalize(text){
   return text
-    .replace(/[“”«»]/g,'"')
-    .replace(/[‘’]/g,"'")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .replace(/[’']/g,"'")
     .replace(/\s+/g," ")
     .trim();
-}
-
-function esc(text){
-  return String(text)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
 }
 
 function unique(arr){
   return [...new Set(arr.filter(Boolean))];
 }
 
-function has(text, regex){
-  return regex.test(text);
+function has(text, patterns){
+  return patterns.some(p => text.includes(p));
 }
 
+function esc(text){
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;");
+}
 
-/* =========================================================
-   OGGETTO PRINCIPALE
-========================================================= */
+/* =========================
+   OGGETTO
+========================= */
 
 function detectObject(text){
 
-  const objects = [
-    ["modulo",/\bmodul[oi]\b/i],
-    ["documento",/\bdocument[oi]\b/i],
-    ["biglietto",/\bbigliett[oi]\b/i],
-    ["fattura",/\bfattur[ae]\b/i],
-    ["bolletta",/\bbollett[ae]\b/i],
-    ["contratto",/\bcontratt[oi]\b/i],
-    ["ordine",/\bordine\b/i],
-    ["pratica",/\bpratic[ae]\b/i],
-    ["email",/\bemail\b|\bmail\b/i],
-    ["appuntamento",/\bappuntamento\b|\bvisita\b|\bincontro\b/i]
-  ];
-
-  for(const item of objects){
-    if(item[1].test(text)) return item[0];
+  if(has(text,[
+    "biglietto",
+    "ticket",
+    "treno",
+    "aereo",
+    "volo",
+    "autobus",
+    "bus"
+  ])){
+    return "biglietto";
   }
 
-  return "";
+  if(has(text,[
+    "modulo",
+    "documento",
+    "pratica",
+    "certificato",
+    "domanda",
+    "istanza",
+    "contratto"
+  ])){
+    return "modulo";
+  }
+
+  if(has(text,[
+    "bolletta",
+    "pagamento",
+    "fattura",
+    "rata",
+    "bonifico"
+  ])){
+    return "pagamento";
+  }
+
+  if(has(text,[
+    "appuntamento",
+    "visita",
+    "dentista",
+    "medico",
+    "colloquio",
+    "riunione"
+  ])){
+    return "appuntamento";
+  }
+
+  if(has(text,[
+    "comprare",
+    "acquistare",
+    "ordine",
+    "acquisto"
+  ])){
+    return "acquisto";
+  }
+
+  return null;
 }
 
-
-/* =========================================================
+/* =========================
    CATEGORIA
-========================================================= */
+========================= */
 
-function detectCategory(text){
+function detectCategory(text, object){
 
-  if(
-    /\bpagare\b|\bpagamento\b|\bpagato\b|\bbolletta\b|\bfattura\b|\beuro\b|\b€\b/i.test(text)
-  ){
-    return "Bolletta / pagamento";
-  }
+  if(object==="biglietto")
+    return "Viaggio / acquisto";
 
-  if(
-    /\bappuntamento\b|\bvisita\b|\bincontro\b/i.test(text)
-  ){
-    return "Appuntamento";
-  }
-
-  if(
-    /\bmodulo\b|\bdocumento\b|\bcomune\b|\bfirma\b|\bfirmare\b|\bfirmarlo\b|\bpratica\b|\bconsegnare\b|\bpresentare\b/i.test(text)
-  ){
+  if(object==="modulo")
     return "Documento / pratica";
-  }
 
-  if(
-    /\bbiglietto\b|\bprenotare\b|\bprenotazione\b|\bcomprare\b|\bacquistare\b|\bordine\b/i.test(text)
-  ){
-    return "Acquisto / ordine";
-  }
+  if(object==="pagamento")
+    return "Bolletta / pagamento";
 
-  if(
-    /\blavoro\b|\bcapo\b|\bcollega\b|\bcliente\b|\bturno\b/i.test(text)
-  ){
-    return "Lavoro";
-  }
+  if(object==="appuntamento")
+    return "Appuntamento";
 
-  if(
-    /\bcasa\b|\bpulire\b|\briordinare\b|\bspesa\b/i.test(text)
-  ){
-    return "Casa";
-  }
+  if(object==="acquisto")
+    return "Acquisto";
+
+  if(has(text,["dentista","medico","visita"]))
+    return "Appuntamento";
+
+  if(has(text,["devo comprare","devo acquistare"]))
+    return "Acquisto";
 
   return "Attività";
 }
 
+/* =========================
+   DATE E ORARI
+========================= */
 
-/* =========================================================
-   DATA E ORA
-========================================================= */
+function extractDateTime(raw){
 
-function extractDateTime(text){
+  const text=normalize(raw);
+  let parts=[];
 
+  const days=[
+    "lunedi","martedi","mercoledi",
+    "giovedi","venerdi","sabato","domenica"
+  ];
+
+  const dayMap={
+    lunedi:"lunedì",
+    martedi:"martedì",
+    mercoledi:"mercoledì",
+    giovedi:"giovedì",
+    venerdi:"venerdì",
+    sabato:"sabato",
+    domenica:"domenica"
+  };
+
+  for(const day of days){
+    if(text.includes(day)){
+      parts.push(dayMap[day]);
+      break;
+    }
+  }
+
+  if(text.includes("dopodomani"))
+    parts.push("dopodomani");
+  else if(text.includes("domani"))
+    parts.push("domani");
+  else if(text.includes("oggi"))
+    parts.push("oggi");
+
+  const dateMatch=text.match(
+    /\b(?:entro\s+)?(\d{1,2})[\/\-](\d{1,2})(?:[\/\-](\d{2,4}))?\b/
+  );
+
+  if(dateMatch){
+    let d=dateMatch[1];
+    let m=dateMatch[2];
+    let y=dateMatch[3];
+
+    parts.push(
+      "entro il "+d+"/"+m+(y ? "/"+y : "")
+    );
+  }
+
+  const months={
+    gennaio:"gennaio",
+    febbraio:"febbraio",
+    marzo:"marzo",
+    aprile:"aprile",
+    maggio:"maggio",
+    giugno:"giugno",
+    luglio:"luglio",
+    agosto:"agosto",
+    settembre:"settembre",
+    ottobre:"ottobre",
+    novembre:"novembre",
+    dicembre:"dicembre"
+  };
+
+  for(const m in months){
+
+    const regex=new RegExp(
+      "\\b(\\d{1,2})\\s+"+m+"\\b"
+    );
+
+    const match=text.match(regex);
+
+    if(match){
+      parts.push(match[1]+" "+months[m]);
+      break;
+    }
+  }
+
+  const timeMatch=text.match(
+    /\b(?:alle|ore)\s*(\d{1,2})(?::|\.| e )?(\d{2})?\b/
+  );
+
+  if(timeMatch){
+
+    const hour=timeMatch[1];
+    const minute=timeMatch[2];
+
+    const time=minute
+      ? hour.padStart(2,"0")+":"+minute
+      : hour.padStart(2,"0")+":00";
+
+    parts.push("ore "+time);
+  }
+
+  const momentWords=[
+    "mattina",
+    "pomeriggio",
+    "sera",
+    "notte"
+  ];
+
+  for(const moment of momentWords){
+    if(text.includes(moment)){
+      parts.push(moment);
+      break;
+    }
+  }
+
+  if(text.includes("entro oggi"))
+    parts.push("entro oggi");
+
+  if(text.includes("entro domani"))
+    parts.push("entro domani");
+
+  if(text.includes("entro venerdi"))
+    parts.push("entro venerdì");
+
+  /* elimina duplicati semantici */
+
+  if(parts.includes("domani") &&
+     parts.includes("entro domani")){
+    parts=parts.filter(x=>x!=="domani");
+  }
+
+  if(parts.includes("oggi") &&
+     parts.includes("entro oggi")){
+    parts=parts.filter(x=>x!=="oggi");
+  }
+
+  return unique(parts).join(" — ");
+}
+
+/* =========================
+   IMPORTI
+========================= */
+
+function extractMoney(raw){
+
+  const matches=raw.match(
+    /(?:€\s*)?\d+(?:[.,]\d{1,2})?\s*(?:€|euro)/gi
+  ) || [];
+
+  return unique(matches.map(x=>x.trim()));
+}
+
+/* =========================
+   LUOGO
+========================= */
+
+function extractPlace(raw){
+
+  const text=normalize(raw);
+
+  const places=[
+    "comune",
+    "posta",
+    "questura",
+    "prefettura",
+    "ospedale",
+    "stazione",
+    "aeroporto",
+    "tribunale",
+    "banca",
+    "farmacia",
+    "scuola",
+    "universita",
+    "roma",
+    "milano",
+    "napoli",
+    "torino",
+    "bologna",
+    "firenze",
+    "venezia",
+    "genova",
+    "palermo",
+    "bari"
+  ];
+
+  for(const p of places){
+
+    if(text.includes(p)){
+      return p.charAt(0).toUpperCase()+p.slice(1);
+    }
+  }
+
+  const presso=raw.match(
+    /\bpresso\s+([^.,]+)/i
+  );
+
+  if(presso)
+    return presso[1].trim();
+
+  return null;
+}
+
+/* =========================
+   AZIONI COMPLETATE
+========================= */
+
+function extractDone(raw){
+
+  const text=normalize(raw);
   const result=[];
 
-  const weekday =
-    /\b(lunedì|lunedi|martedì|martedi|mercoledì|mercoledi|giovedì|giovedi|venerdì|venerdi|sabato|domenica)(?:\s+(mattina|pomeriggio|sera|notte))?\b/gi;
-
-  let m;
-
-  while((m=weekday.exec(text))!==null){
-    result.push(
-      m[2] ? `${m[1]} ${m[2]}` : m[1]
-    );
+  if(has(text,[
+    "modulo e gia compilato",
+    "modulo gia compilato",
+    "documento e gia compilato",
+    "documento gia compilato",
+    "pratica e gia compilata",
+    "pratica gia compilata"
+  ])){
+    result.push("Il modulo/documento è già compilato.");
   }
 
-  const relative =
-    /\b(oggi|domani|dopodomani)(?:\s+(mattina|pomeriggio|sera|notte))?\b/gi;
-
-  while((m=relative.exec(text))!==null){
-    result.push(
-      m[2] ? `${m[1]} ${m[2]}` : m[1]
-    );
+  if(has(text,[
+    "ho gia pagato",
+    "pagamento gia effettuato",
+    "pagamento gia fatto",
+    "ho effettuato il pagamento"
+  ])){
+    result.push("Il pagamento è già stato effettuato.");
   }
 
-  const numeric =
-    /\b\d{1,2}[\/.-]\d{1,2}(?:[\/.-]\d{2,4})?\b/g;
-
-  result.push(...(text.match(numeric)||[]));
-
-  const month =
-    /\b\d{1,2}\s+(gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre)\b/gi;
-
-  result.push(...(text.match(month)||[]));
-
-  const time =
-    /\b(?:alle|ore)\s+([01]?\d|2[0-3])(?::([0-5]\d))?\b/gi;
-
-  while((m=time.exec(text))!==null){
-    result.push(
-      m[2]
-      ? `ore ${m[1]}:${m[2]}`
-      : `ore ${m[1]}:00`
-    );
+  if(has(text,[
+    "ho gia comprato",
+    "gia comprato",
+    "acquisto gia effettuato",
+    "ho gia acquistato"
+  ])){
+    result.push("L'acquisto è già stato effettuato.");
   }
 
-  if(/\bentro\s+oggi\b/i.test(text)){
-    result.push("entro oggi");
-  }
-
-  if(/\bentro\s+domani\b/i.test(text)){
-    result.push("entro domani");
-  }
-
-  /*
-    Se "entro domani" è presente,
-    non aggiungiamo anche "domani":
-    evita duplicati.
-  */
-
-  if(result.includes("entro domani")){
-    const index=result.indexOf("domani");
-    if(index!==-1) result.splice(index,1);
-  }
-
-  if(result.includes("entro oggi")){
-    const index=result.indexOf("oggi");
-    if(index!==-1) result.splice(index,1);
+  if(has(text,[
+    "ho gia inviato",
+    "gia inviato",
+    "gia mandato",
+    "gia spedito"
+  ])){
+    result.push("L'invio è già stato effettuato.");
   }
 
   return unique(result);
 }
 
-
-/* =========================================================
-   IMPORTI
-========================================================= */
-
-function extractMoney(text){
-
-  return unique(
-    text.match(
-      /\b\d+(?:[.,]\d{1,2})?\s*(?:€|euro)\b/gi
-    )||[]
-  );
-}
-
-
-/* =========================================================
-   LUOGO
-========================================================= */
-
-function extractPlace(text){
-
-  const places=[];
-
-  if(/\bal\s+Comune\b/i.test(text) ||
-     /\bnel\s+Comune\b/i.test(text)){
-    places.push("Comune");
-  }
-
-  const cities =
-    text.match(
-      /\b(Roma|Milano|Torino|Napoli|Bologna|Firenze|Venezia)\b/gi
-    )||[];
-
-  places.push(...cities);
-
-  const presso =
-    text.match(/\bpresso\s+(?:il|la)?\s*([^,.]+)/i);
-
-  if(presso && presso[1]){
-    places.push(presso[1].trim());
-  }
-
-  return unique(places);
-}
-
-
-/* =========================================================
-   FRASI DI STATO
-========================================================= */
-
-function extractDone(text){
-
-  const done=[];
-
-  /*
-    MODULO / DOCUMENTO COMPILATO
-  */
-
-  if(
-    /\b(?:il|la)\s+(?:modulo|documento)\s+è\s+già\s+compilat[oa]\b/i.test(text) ||
-    /\b(?:modulo|documento)\s+è\s+già\s+compilat[oa]\b/i.test(text)
-  ){
-    done.push("Il modulo/documento è già compilato.");
-  }
-
-  /*
-    PAGAMENTO GIÀ FATTO
-  */
-
-  if(
-    /\bho\s+già\s+pagato\b/i.test(text) ||
-    /\bl'ho\s+già\s+pagato\b/i.test(text)
-  ){
-    done.push("Il pagamento è già stato effettuato.");
-  }
-
-  /*
-    INVIO GIÀ FATTO
-  */
-
-  if(
-    /\bho\s+già\s+inviato\b/i.test(text) ||
-    /\bl'ho\s+già\s+inviato\b/i.test(text)
-  ){
-    done.push("Il documento è già stato inviato.");
-  }
-
-  /*
-    ACQUISTO GIÀ FATTO
-  */
-
-  if(
-    /\bho\s+già\s+comprato\b/i.test(text) ||
-    /\bl'ho\s+già\s+comprato\b/i.test(text)
-  ){
-    done.push("L'acquisto è già stato effettuato.");
-  }
-
-  return unique(done);
-}
-
-
-/* =========================================================
+/* =========================
    AZIONI MANCANTI
-========================================================= */
+========================= */
 
-function extractMissing(text, object){
+function extractMissing(raw, object){
 
-  const missing=[];
+  const text=normalize(raw);
+  const result=[];
 
-  /*
-    FIRMA
-  */
-
-  if(
-    /\bdevo\s+ancora\s+firmare\b/i.test(text) ||
-    /\bdevo\s+ancora\s+firmarlo\b/i.test(text) ||
-    /\bdevo\s+ancora\s+firmarla\b/i.test(text) ||
-    /\bmi\s+manca\s+la\s+firma\b/i.test(text)
-  ){
-    missing.push(
+  if(has(text,[
+    "devo ancora firmare",
+    "devo firmarlo",
+    "devo ancora firmarlo",
+    "manca la firma",
+    "devo firmare"
+  ])){
+    result.push(
       object==="modulo"
       ? "Firmare il modulo."
       : "Firmare il documento."
     );
   }
 
-  /*
-    PAGAMENTO
-  */
-
-  if(
-    /\bdevo\s+ancora\s+pagare\b/i.test(text) ||
-    /\bnon\s+ho\s+ancora\s+pagato\b/i.test(text) ||
-    /\bnon\s+l'ho\s+ancora\s+pagato\b/i.test(text) ||
-    /\bnon\s+ho\s+ancora\s+effettuato\s+il\s+pagamento\b/i.test(text) ||
-    /\bdevo\s+pagarl[oa]\b/i.test(text)
-  ){
-    missing.push("Effettuare il pagamento.");
+  if(has(text,[
+    "non ho ancora effettuato il pagamento",
+    "non ho ancora pagato",
+    "devo ancora pagare",
+    "devo pagare",
+    "manca il pagamento"
+  ])){
+    result.push("Effettuare il pagamento.");
   }
 
-  /*
-    ACQUISTO
-  */
+  if(has(text,[
+    "non l'ho ancora comprato",
+    "non ho ancora comprato",
+    "devo ancora comprare",
+    "devo ancora acquistare"
+  ])){
+    if(object==="biglietto")
+      result.push("Acquistare il biglietto.");
+    else
+      result.push("Effettuare l'acquisto.");
+  }
 
-  if(
-    /\bdevo\s+ancora\s+comprare\b/i.test(text) ||
-    /\bdevo\s+comprarl[oa]\b/i.test(text) ||
-    /\bnon\s+ho\s+ancora\s+comprat[oa]\b/i.test(text) ||
-    /\bnon\s+l'ho\s+ancora\s+comprat[oa]\b/i.test(text)
-  ){
-    missing.push(
-      object==="biglietto"
-      ? "Acquistare il biglietto."
-      : "Effettuare l'acquisto."
+  if(has(text,[
+    "devo ancora inviare",
+    "non ho ancora inviato",
+    "devo inviare"
+  ])){
+    result.push("Effettuare l'invio.");
+  }
+
+  if(has(text,[
+    "devo ancora consegnare",
+    "non ho ancora consegnato"
+  ])){
+    result.push("Consegnare quanto richiesto.");
+  }
+
+  return unique(result);
+}
+
+/* =========================
+   AZIONI DA FARE
+========================= */
+
+function extractTasks(raw, object){
+
+  const text=normalize(raw);
+  const result=[];
+
+  if(has(text,[
+    "devo consegnare",
+    "devo presentare"
+  ])){
+    result.push("Consegnare quanto richiesto.");
+  }
+
+  if(has(text,[
+    "devo andare",
+    "devo recarmi",
+    "devo andare al",
+    "devo recarmi al"
+  ])){
+    result.push("Recarsi sul posto.");
+  }
+
+  if(has(text,[
+    "devo portare",
+    "devo avere con me"
+  ])){
+    result.push("Portare quanto necessario.");
+  }
+
+  if(has(text,[
+    "devo pagare"
+  ]) && !has(text,[
+    "non ho ancora effettuato il pagamento",
+    "non ho ancora pagato"
+  ])){
+    result.push("Effettuare il pagamento.");
+  }
+
+  if(has(text,[
+    "devo comprare"
+  ]) && object!=="biglietto"){
+    result.push("Effettuare l'acquisto.");
+  }
+
+  if(has(text,[
+    "devo acquistare"
+  ]) && object!=="biglietto"){
+    result.push("Effettuare l'acquisto.");
+  }
+
+  if(object==="biglietto" &&
+     has(text,[
+       "devo comprare",
+       "devo acquistare"
+     ])){
+    result.push("Acquistare il biglietto.");
+  }
+
+  if(has(text,[
+    "devo inviare",
+    "devo mandare",
+    "devo spedire"
+  ])){
+    result.push("Effettuare l'invio.");
+  }
+
+  if(has(text,[
+    "arrivare ",
+    "arriva ",
+    "arrivare 10 minuti",
+    "arrivare 15 minuti"
+  ])){
+    const match=raw.match(
+      /\barrivare\s+(\d+)\s+minuti\s+prima\b/i
     );
+
+    if(match){
+      result.push(
+        "Arrivare "+match[1]+" minuti prima."
+      );
+    }
   }
 
-  /*
-    INVIO
-  */
-
-  if(
-    /\bdevo\s+ancora\s+inviare\b/i.test(text) ||
-    /\bdevo\s+inviarl[oa]\b/i.test(text) ||
-    /\bnon\s+ho\s+ancora\s+inviat[oa]\b/i.test(text) ||
-    /\bnon\s+l'ho\s+ancora\s+inviat[oa]\b/i.test(text)
-  ){
-    missing.push("Inviare il documento.");
-  }
-
-  /*
-    CONSEGNA
-  */
-
-  if(
-    /\bdevo\s+ancora\s+consegnare\b/i.test(text) ||
-    /\bdevo\s+consegnarl[oa]\b/i.test(text) ||
-    /\bdevo\s+presentare\b/i.test(text) ||
-    /\bdevo\s+presentarl[oa]\b/i.test(text)
-  ){
-    missing.push("Consegnare quanto richiesto.");
-  }
-
-  /*
-    ANDARE / RECarsi
-  */
-
-  if(
-    /\bdevo\s+andare\b/i.test(text) ||
-    /\bdevo\s+recarmi\b/i.test(text)
-  ){
-    missing.push("Recarsi nel luogo indicato.");
-  }
-
-  return unique(missing);
+  return unique(result);
 }
 
+/* =========================
+   COSA PORTARE
+========================= */
 
-/* =========================================================
-   AZIONI ESPLICITE
-========================================================= */
+function extractRemember(raw, object){
 
-function extractTasks(text){
+  const text=normalize(raw);
+  const result=[];
 
-  const tasks=[];
+  const patterns=[
+    /portare\s+(?:con me\s+)?(?:la|il|lo|i|gli|le|un|una)\s+([^.,]+)/i,
+    /devo portare\s+(?:la|il|lo|i|gli|le|un|una)\s+([^.,]+)/i
+  ];
 
-  if(/\bdevo\s+consegnare\b/i.test(text)){
-    tasks.push("Consegnare quanto richiesto.");
+  for(const regex of patterns){
+
+    const match=raw.match(regex);
+
+    if(match){
+      let item=match[1]
+        .trim()
+        .replace(/\s+e arrivare.*$/i,"")
+        .replace(/\s+e arrivare.*$/i,"");
+
+      if(item){
+        result.push(
+          "Portare "+item+"."
+        );
+      }
+
+      break;
+    }
   }
 
-  if(/\bdevo\s+presentare\b/i.test(text)){
-    tasks.push("Presentare quanto richiesto.");
-  }
-
-  if(/\bdevo\s+andare\b/i.test(text)){
-    tasks.push("Recarsi nel luogo indicato.");
-  }
-
-  if(/\bdevo\s+recarmi\b/i.test(text)){
-    tasks.push("Recarsi nel luogo indicato.");
-  }
-
-  if(/\bdevo\s+portare\b/i.test(text)){
-    tasks.push("Portare quanto necessario.");
-  }
-
-  if(/\bdevo\s+comprare\b/i.test(text)){
-    tasks.push("Effettuare l'acquisto.");
-  }
-
-  if(/\bdevo\s+pagare\b/i.test(text)){
-    tasks.push("Effettuare il pagamento.");
-  }
-
-  if(/\bdevo\s+inviare\b/i.test(text)){
-    tasks.push("Inviare quanto richiesto.");
-  }
-
-  return unique(tasks);
-}
-
-
-/* =========================================================
-   COSA PORTARE / RICORDARE
-========================================================= */
-
-function extractRemember(text,object){
-
-  const remember=[];
-
-  if(
-    /\bportare\s+con\s+me\b/i.test(text) ||
-    /\bportarlo\s+con\s+me\b/i.test(text) ||
-    /\bportarla\s+con\s+me\b/i.test(text) ||
-    /\bportarlo\b/i.test(text) ||
-    /\bportarla\b/i.test(text)
-  ){
+  if(has(text,[
+    "portarlo con me"
+  ])){
 
     if(object==="modulo"){
-      remember.push("Portare il modulo.");
-    }
-    else if(object==="documento"){
-      remember.push("Portare il documento.");
-    }
-    else if(object==="biglietto"){
-      remember.push("Portare il biglietto.");
-    }
-    else{
-      remember.push("Portare quanto necessario.");
+      result.push("Portare il modulo.");
     }
   }
 
-  const rememberMatch =
-    text.match(/\bricordarmi\s+(?:di\s+)?([^,.]+)/i);
+  if(has(text,[
+    "portarla con me"
+  ])){
 
-  if(rememberMatch){
-    remember.push(
-      "Ricordare: "+rememberMatch[1].trim()+"."
-    );
+    if(object==="modulo"){
+      result.push("Portare il modulo.");
+    }
   }
 
-  return unique(remember);
+  return unique(result);
 }
 
-
-/* =========================================================
+/* =========================
    PRIORITÀ
-========================================================= */
+========================= */
 
-function detectPriority(text,dates,missing){
+function detectPriority(raw, dateTime, missing, category){
+
+  const text=normalize(raw);
 
   if(
-    /\burgente\b|\bsubito\b|\bscadenza\b|\bentro oggi\b|\bentro domani\b/i.test(text)
+    missing.length>0 ||
+    has(text,[
+      "urgente",
+      "urgentissimo",
+      "entro oggi",
+      "entro domani",
+      "scade oggi",
+      "scade domani",
+      "prima possibile",
+      "immediatamente"
+    ])
   ){
     return "ALTA";
   }
 
-  if(missing.length && dates.length){
-    return "ALTA";
-  }
-
   if(
-    /\bdevo\b|\bnecessario\b|\bimportante\b|\bappuntamento\b/i.test(text)
+    dateTime ||
+    category==="Appuntamento" ||
+    has(text,[
+      "devo",
+      "importante",
+      "appuntamento"
+    ])
   ){
     return "MEDIA";
   }
 
-  return "NORMALE";
+  return "BASSA";
 }
 
-
-/* =========================================================
+/* =========================
    PRIMA AZIONE
-========================================================= */
+========================= */
 
-function buildFirstAction(missing,object){
+function buildFirstAction(
+  missing,
+  tasks,
+  remember,
+  dateTime,
+  object
+){
 
-  if(!missing.length){
-    return "Definisci la prima azione concreta.";
-  }
+  if(missing.length)
+    return missing[0];
 
-  const first=missing[0];
+  if(tasks.length)
+    return tasks[0];
 
-  if(/Firmare il modulo/i.test(first)){
-    return "Firma il modulo.";
-  }
+  if(remember.length)
+    return remember[0];
 
-  if(/Firmare il documento/i.test(first)){
-    return "Firma il documento.";
-  }
+  if(object==="appuntamento" && dateTime)
+    return "Preparare ciò che serve per l'appuntamento.";
 
-  if(/Effettuare il pagamento/i.test(first)){
-    return "Effettua il pagamento.";
-  }
+  if(dateTime)
+    return "Organizzare l'attività prevista.";
 
-  if(/Acquistare il biglietto/i.test(first)){
-    return "Acquista il biglietto.";
-  }
-
-  if(/Effettuare l'acquisto/i.test(first)){
-    return "Effettua l'acquisto.";
-  }
-
-  if(/Inviare/i.test(first)){
-    return "Invia il documento.";
-  }
-
-  if(/Consegnare/i.test(first)){
-    return "Prepara la consegna.";
-  }
-
-  return first;
+  return "Definisci la prima azione concreta.";
 }
 
+/* =========================
+   SEQUENZA
+========================= */
 
-/* =========================================================
-   SEQUENZA LOGICA
-========================================================= */
+function buildSequence(
+  missing,
+  tasks,
+  remember,
+  dateTime,
+  object
+){
 
-function buildSequence(missing,tasks,remember){
+  let result=[];
 
-  const sequence=[];
-
-  /*
-    1. Azioni bloccanti
-  */
-
-  missing.forEach(item=>{
-    if(!sequence.includes(item)){
-      sequence.push(item);
-    }
-  });
-
-  /*
-    2. Azioni esplicite
-  */
-
-  tasks.forEach(item=>{
-    if(!sequence.includes(item)){
-      sequence.push(item);
-    }
-  });
+  result=[
+    ...missing,
+    ...tasks,
+    ...remember
+  ];
 
   /*
-    3. Cose da portare
+    Evita duplicazioni concettuali.
   */
 
-  remember.forEach(item=>{
-    if(!sequence.includes(item)){
-      sequence.push(item);
-    }
-  });
+  const normalized=[];
 
-  return sequence.length
-    ? sequence
-    : ["Definire la prima azione concreta."];
+  for(const item of result){
+
+    const n=normalize(item);
+
+    const duplicate=normalized.some(existing=>{
+
+      const e=normalize(existing);
+
+      if(
+        (n.includes("acquistare il biglietto") &&
+         e.includes("effettuare l'acquisto")) ||
+        (e.includes("acquistare il biglietto") &&
+         n.includes("effettuare l'acquisto"))
+      ){
+        return true;
+      }
+
+      if(
+        n.includes("effettuare il pagamento") &&
+        e.includes("effettuare il pagamento")
+      ){
+        return true;
+      }
+
+      if(
+        n.includes("portare il modulo") &&
+        e.includes("portare il modulo")
+      ){
+        return true;
+      }
+
+      return n===e;
+    });
+
+    if(!duplicate)
+      normalized.push(item);
+  }
+
+  result=normalized;
+
+  if(
+    object==="appuntamento" &&
+    !result.length &&
+    dateTime
+  ){
+    result.push(
+      "Preparare ciò che serve per l'appuntamento."
+    );
+  }
+
+  return result;
 }
 
-
-/* =========================================================
+/* =========================
    AVVISI
-========================================================= */
+========================= */
 
-function buildWarnings(text,dates){
+function buildWarnings(
+  dateTime,
+  place,
+  tasks,
+  missing,
+  category,
+  raw
+){
 
   const warnings=[];
 
-  if(!dates.length){
+  if(!dateTime){
     warnings.push(
       "Non è stata rilevata una data o una scadenza."
     );
   }
 
-  return warnings;
+  if(
+    category==="Appuntamento" &&
+    !place &&
+    !has(normalize(raw),[
+      "dentista",
+      "medico",
+      "visita",
+      "appuntamento"
+    ])
+  ){
+    warnings.push(
+      "Non è stato rilevato il luogo dell'appuntamento."
+    );
+  }
+
+  if(!tasks.length && !missing.length && !dateTime){
+    warnings.push(
+      "Non sono state rilevate azioni concrete."
+    );
+  }
+
+  return unique(warnings);
 }
 
-
-/* =========================================================
+/* =========================
    ANALISI PRINCIPALE
-========================================================= */
+========================= */
 
 function analyze(){
 
-  const raw=document.getElementById("input").value;
-  const text=normalize(raw);
+  const raw=document.getElementById("input").value.trim();
 
-  if(!text){
-    document.getElementById("output").innerHTML=`
-      <div class="card">
-        <p class="empty">Scrivi prima cosa devi fare.</p>
-      </div>
-    `;
+  if(!raw){
     return;
   }
 
-  const object=detectObject(text);
+  const object=detectObject(normalize(raw));
+  const category=detectCategory(
+    normalize(raw),
+    object
+  );
 
-  const category=detectCategory(text);
+  const dateTime=extractDateTime(raw);
+  const money=extractMoney(raw);
+  const place=extractPlace(raw);
+  const done=extractDone(raw);
+  const missing=extractMissing(raw,object);
+  const tasks=extractTasks(raw,object);
+  const remember=extractRemember(raw,object);
 
-  const dates=extractDateTime(text);
+  const priority=detectPriority(
+    raw,
+    dateTime,
+    missing,
+    category
+  );
 
-  const money=extractMoney(text);
+  const firstAction=buildFirstAction(
+    missing,
+    tasks,
+    remember,
+    dateTime,
+    object
+  );
 
-  const places=extractPlace(text);
+  const sequence=buildSequence(
+    missing,
+    tasks,
+    remember,
+    dateTime,
+    object
+  );
 
-  const done=extractDone(text);
+  const warnings=buildWarnings(
+    dateTime,
+    place,
+    tasks,
+    missing,
+    category,
+    raw
+  );
 
-  const missing=extractMissing(text,object);
-
-  const tasks=extractTasks(text);
-
-  const remember=extractRemember(text,object);
-
-  const priority=
-    detectPriority(text,dates,missing);
-
-  const firstAction=
-    buildFirstAction(missing,object);
-
-  const sequence=
-    buildSequence(
-      missing,
-      tasks,
-      remember
-    );
-
-  const warnings=
-    buildWarnings(text,dates);
-
-  let html="";
-
-
-  /* ANALISI */
-
-  html+=`
-    <div class="card">
-      <h2>Analisi</h2>
-      <span class="tag">${esc(category)}</span>
-      <span class="tag">Priorità: ${esc(priority)}</span>
-    </div>
-  `;
-
-
-  /* PRIMA AZIONE */
-
-  html+=`
-    <div class="card">
-      <h2>FAI QUESTO ADESSO</h2>
-      <div class="big-action">
-        ${esc(firstAction)}
-      </div>
-    </div>
-  `;
-
-
-  /* SEQUENZA */
-
-  html+=`
-    <div class="card">
-      <h2>Sequenza</h2>
-      <ol>
-        ${sequence
-          .map(x=>`<li>${esc(x)}</li>`)
-          .join("")}
-      </ol>
-    </div>
-  `;
-
-
-  /* COSA HO CAPITO */
-
-  html+=`
-    <div class="card">
-
-      <h2>Cosa ho capito</h2>
-
-      <p>
-        <strong>Cosa devi fare:</strong><br>
-        ${
-          tasks.length
-          ? tasks.map(esc).join("<br>")
-          : "<span class='empty'>Nessuna azione generica rilevata.</span>"
-        }
-      </p>
-
-      <p>
-        <strong>Cosa manca:</strong><br>
-        ${
-          missing.length
-          ? missing.map(esc).join("<br>")
-          : "<span class='empty'>Nessuna azione mancante rilevata.</span>"
-        }
-      </p>
-
-      <p>
-        <strong>Cosa è già fatto:</strong><br>
-        ${
-          done.length
-          ? done.map(esc).join("<br>")
-          : "<span class='empty'>Nessuna azione già completata rilevata.</span>"
-        }
-      </p>
-
-      <p>
-        <strong>Luogo:</strong><br>
-        ${
-          places.length
-          ? places.map(esc).join(", ")
-          : "<span class='empty'>Non rilevato.</span>"
-        }
-      </p>
-
-      <p>
-        <strong>Data / Ora:</strong><br>
-        ${
-          dates.length
-          ? dates.map(esc).join(", ")
-          : "<span class='empty'>Non rilevata.</span>"
-        }
-      </p>
-
-      <p>
-        <strong>Da portare / Ricordare:</strong><br>
-        ${
-          remember.length
-          ? remember.map(esc).join("<br>")
-          : "<span class='empty'>Niente di specifico rilevato.</span>"
-        }
-      </p>
-
-    </div>
-  `;
-
-
-  /* IMPORTI */
-
-  if(money.length){
-
-    html+=`
-      <div class="card">
-        <h2>Importi</h2>
-        ${money
-          .map(x=>`<span class="tag">${esc(x)}</span>`)
-          .join("")}
-      </div>
-    `;
-  }
-
-
-  /* AVVISI */
-
-  if(warnings.length){
-
-    html+=`
-      <div class="card">
-        <h2>Cosa controllare</h2>
-        <ul>
-          ${warnings
-            .map(x=>`<li>${esc(x)}</li>`)
-            .join("")}
-        </ul>
-      </div>
-    `;
-  }
-
-
-  document.getElementById("output").innerHTML=html;
+  render({
+    category,
+    priority,
+    firstAction,
+    sequence,
+    tasks,
+    missing,
+    done,
+    place,
+    dateTime,
+    remember,
+    money,
+    warnings
+  });
 }
 
+/* =========================
+   RENDER
+========================= */
 
-/* =========================================================
+function render(data){
+
+  document.getElementById("output")
+    .classList.remove("hidden");
+
+  document.getElementById("analysis").innerHTML=
+    "<strong>"+esc(data.category)+"</strong>"+
+    '<span class="priority '+(
+      data.priority==="ALTA"
+      ? "high"
+      : data.priority==="MEDIA"
+      ? "medium"
+      : "low"
+    )+'">'+esc(data.priority)+"</span>";
+
+  document.getElementById("firstAction").textContent=
+    data.firstAction;
+
+  const sequence=document.getElementById("sequence");
+  sequence.innerHTML="";
+
+  if(data.sequence.length){
+
+    data.sequence.forEach(item=>{
+      const li=document.createElement("li");
+      li.textContent=item;
+      sequence.appendChild(li);
+    });
+
+  }else{
+
+    sequence.innerHTML=
+      '<li class="empty">Nessuna sequenza concreta rilevata.</li>';
+  }
+
+  renderList(
+    "tasks",
+    data.tasks,
+    "Nessuna azione specifica rilevata."
+  );
+
+  renderList(
+    "missing",
+    data.missing,
+    "Nessuna azione mancante rilevata."
+  );
+
+  renderList(
+    "done",
+    data.done,
+    "Nessuna azione già completata rilevata."
+  );
+
+  renderSingle(
+    "place",
+    data.place || "Non rilevato."
+  );
+
+  renderSingle(
+    "dateTime",
+    data.dateTime || "Non rilevata."
+  );
+
+  renderList(
+    "remember",
+    data.remember,
+    "Niente di specifico rilevato."
+  );
+
+  const moneyCard=
+    document.getElementById("moneyCard");
+
+  if(data.money.length){
+
+    moneyCard.classList.remove("hidden");
+
+    document.getElementById("money").textContent=
+      data.money.join(" • ");
+
+  }else{
+
+    moneyCard.classList.add("hidden");
+  }
+
+  const warningCard=
+    document.getElementById("warningCard");
+
+  const warnings=
+    document.getElementById("warnings");
+
+  warnings.innerHTML="";
+
+  if(data.warnings.length){
+
+    warningCard.classList.remove("hidden");
+
+    data.warnings.forEach(item=>{
+      const li=document.createElement("li");
+      li.textContent=item;
+      warnings.appendChild(li);
+    });
+
+  }else{
+
+    warningCard.classList.add("hidden");
+  }
+
+  window.scrollTo({
+    top:document.getElementById("output").offsetTop-15,
+    behavior:"smooth"
+  });
+}
+
+/* =========================
+   RENDER HELPERS
+========================= */
+
+function renderList(id,items,emptyText){
+
+  const el=document.getElementById(id);
+
+  if(!items.length){
+    el.innerHTML=
+      '<span class="empty">'+
+      esc(emptyText)+
+      "</span>";
+    return;
+  }
+
+  el.innerHTML=
+    "<ul>"+
+    items.map(item=>
+      "<li>"+esc(item)+"</li>"
+    ).join("")+
+    "</ul>";
+}
+
+function renderSingle(id,value){
+
+  document.getElementById(id).innerHTML=
+    esc(value);
+}
+
+/* =========================
    CANCELLA
-========================================================= */
+========================= */
 
 function clearAll(){
 
   document.getElementById("input").value="";
-  document.getElementById("output").innerHTML="";
+
+  document.getElementById("output")
+    .classList.add("hidden");
+
+  document.getElementById("input").focus();
 }
 
 </script>
