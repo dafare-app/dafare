@@ -360,7 +360,7 @@ function extractDone(text) {
 
   const done = [];
 
-  if (/\b(?:è|sono)\s+già\s+compilat[oaie]\b/i.test(text)) {
+  if (/\b(?:è|sono)\s+già\s+compilat[oaie]\b/i.test(text) || /\b(?:modulo|documento)\s+è\s+già\s+compilat[oaie]\b/i.test(text)) {
     done.push("Il modulo/documento è già compilato.");
   }
 
