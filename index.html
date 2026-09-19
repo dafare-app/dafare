@@ -6,151 +6,120 @@
 <title>DA FARE</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#f5f5f7;
+  color:#171717;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
 }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #f5f5f7;
-  color: #171717;
+.container{
+  width:min(920px,calc(100% - 28px));
+  margin:auto;
+  padding:45px 0 70px
 }
 
-.container {
-  width: min(920px, calc(100% - 32px));
-  margin: 0 auto;
-  padding: 50px 0 70px;
+.logo{
+  font-size:38px;
+  font-weight:800;
+  letter-spacing:-1.5px
 }
 
-header {
-  margin-bottom: 28px;
+.subtitle{
+  color:#666;
+  margin:7px 0 25px;
+  font-size:17px
 }
 
-.logo {
-  font-size: 38px;
-  font-weight: 800;
-  letter-spacing: -1.5px;
+textarea{
+  width:100%;
+  min-height:190px;
+  padding:20px;
+  border:1px solid #d7d7d7;
+  border-radius:18px;
+  background:white;
+  font:inherit;
+  font-size:17px;
+  line-height:1.5;
+  resize:vertical;
+  outline:none
 }
 
-.subtitle {
-  margin-top: 8px;
-  color: #666;
-  font-size: 17px;
+textarea:focus{border-color:#999}
+
+.buttons{
+  display:flex;
+  gap:10px;
+  margin-top:13px
 }
 
-textarea {
-  width: 100%;
-  min-height: 190px;
-  resize: vertical;
-  border: 1px solid #d6d6d6;
-  border-radius: 18px;
-  padding: 20px;
-  font-size: 17px;
-  line-height: 1.5;
-  outline: none;
-  background: white;
+button{
+  border:0;
+  border-radius:12px;
+  padding:13px 19px;
+  font-weight:700;
+  font-size:15px;
+  cursor:pointer
 }
 
-textarea:focus {
-  border-color: #999;
+.primary{background:#171717;color:white}
+.secondary{background:#e7e7e7;color:#222}
+
+#output{margin-top:25px}
+
+.card{
+  background:white;
+  border:1px solid #e5e5e5;
+  border-radius:18px;
+  padding:21px;
+  margin-bottom:13px
 }
 
-.buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 14px;
+.card h2{
+  margin:0 0 12px;
+  font-size:16px
 }
 
-button {
-  border: 0;
-  border-radius: 12px;
-  padding: 13px 19px;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
+.big-action{
+  font-size:23px;
+  font-weight:800;
+  letter-spacing:-.3px
 }
 
-.primary {
-  background: #171717;
-  color: white;
+.tag{
+  display:inline-block;
+  background:#eee;
+  border-radius:999px;
+  padding:6px 10px;
+  margin:0 5px 5px 0;
+  font-size:13px;
+  font-weight:700
 }
 
-.secondary {
-  background: #e7e7e7;
-  color: #222;
+p{
+  line-height:1.5;
+  margin:9px 0
 }
 
-#output {
-  margin-top: 28px;
+ol,ul{
+  margin:8px 0 0;
+  padding-left:23px
 }
 
-.card {
-  background: white;
-  border-radius: 18px;
-  padding: 22px;
-  margin-bottom: 14px;
-  border: 1px solid #e5e5e5;
+li{
+  margin:8px 0;
+  line-height:1.45
 }
 
-.card h2 {
-  font-size: 16px;
-  margin: 0 0 12px;
-}
+.empty{color:#777}
 
-.card p {
-  margin: 6px 0;
-  line-height: 1.5;
-}
-
-.big-action {
-  font-size: 23px;
-  font-weight: 800;
-  letter-spacing: -0.4px;
-}
-
-.tag {
-  display: inline-block;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: #eeeeee;
-  font-size: 13px;
-  font-weight: 700;
-  margin-right: 6px;
-  margin-bottom: 6px;
-}
-
-ul {
-  margin: 8px 0 0;
-  padding-left: 22px;
-}
-
-li {
-  margin: 8px 0;
-  line-height: 1.45;
-}
-
-.empty {
-  color: #777;
-}
-
-@media (max-width: 600px) {
-  .container {
-    width: min(100% - 22px, 920px);
-    padding-top: 28px;
-  }
-
-  .logo {
-    font-size: 32px;
-  }
-
-  .buttons {
-    flex-direction: column;
-  }
-
-  button {
-    width: 100%;
-  }
+@media(max-width:600px){
+  .container{padding-top:28px}
+  .logo{font-size:32px}
+  .buttons{flex-direction:column}
+  button{width:100%}
 }
 </style>
 </head>
@@ -159,438 +128,125 @@ li {
 
 <div class="container">
 
-  <header>
-    <div class="logo">DA FARE</div>
-    <div class="subtitle">
-      Dal caos all'azione.
-    </div>
-  </header>
+<div class="logo">DA FARE</div>
 
-  <textarea id="input"
-    placeholder="Scrivi qui quello che devi fare...
+<div class="subtitle">
+Dal caos all'azione.
+</div>
+
+<textarea id="input" placeholder="Scrivi quello che devi fare...
 
 Esempio:
-Devo consegnare il modulo al Comune venerdì mattina. Il modulo è già compilato ma devo ancora firmarlo e portarlo con me."></textarea>
+Devo consegnare il modulo al Comune venerdì mattina.
+Il modulo è già compilato ma devo ancora firmarlo e portarlo con me."></textarea>
 
-  <div class="buttons">
-    <button class="primary" onclick="analyze()">Trasforma in azioni</button>
-    <button class="secondary" onclick="clearAll()">Cancella</button>
-  </div>
+<div class="buttons">
+<button class="primary" onclick="analyze()">Trasforma in azioni</button>
+<button class="secondary" onclick="clearAll()">Cancella</button>
+</div>
 
-  <div id="output"></div>
+<div id="output"></div>
 
 </div>
 
 <script>
 
-function clean(text) {
+/* =========================================================
+   UTILITÀ
+========================================================= */
+
+function normalize(text){
   return text
-    .replace(/[“”]/g, '"')
-    .replace(/[‘’]/g, "'")
-    .replace(/\s+/g, ' ')
+    .replace(/[“”«»]/g,'"')
+    .replace(/[‘’]/g,"'")
+    .replace(/\s+/g," ")
     .trim();
 }
 
-function esc(text) {
+function esc(text){
   return String(text)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
 
-function unique(arr) {
+function unique(arr){
   return [...new Set(arr.filter(Boolean))];
 }
 
-/* -----------------------------
-   DATE / ORA
------------------------------ */
-
-function extractDateTime(text) {
-
-  const results = [];
-
-  const weekdays =
-    /\b(lunedì|lunedi|martedì|martedi|mercoledì|mercoledi|giovedì|giovedi|venerdì|venerdi|sabato|domenica)(?:\s+(mattina|pomeriggio|sera))?\b/gi;
-
-  let match;
-
-  while ((match = weekdays.exec(text)) !== null) {
-
-    let day = match[1];
-    let moment = match[2];
-
-    if (moment) {
-      results.push(`${day} ${moment}`);
-    } else {
-      results.push(day);
-    }
-  }
-
-  const relative =
-    /\b(oggi|domani|dopodomani)(?:\s+(mattina|pomeriggio|sera))?\b/gi;
-
-  while ((match = relative.exec(text)) !== null) {
-
-    if (match[2]) {
-      results.push(`${match[1]} ${match[2]}`);
-    } else {
-      results.push(match[1]);
-    }
-  }
-
-  const numericDates =
-    /\b\d{1,2}[\/.-]\d{1,2}(?:[\/.-]\d{2,4})?\b/g;
-
-  const nums = text.match(numericDates) || [];
-  results.push(...nums);
-
-  const months =
-    /\b\d{1,2}\s+(gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre)\b/gi;
-
-  const monthMatches = text.match(months) || [];
-  results.push(...monthMatches);
-
-  const times =
-    /\b(?:alle|ore)\s+([01]?\d|2[0-3])(?::([0-5]\d))?\b/gi;
-
-  while ((match = times.exec(text)) !== null) {
-
-    const hour = match[1];
-    const minute = match[2];
-
-    results.push(
-      minute
-        ? `ore ${hour}:${minute}`
-        : `ore ${hour}:00`
-    );
-  }
-
-  if (/\bentro\s+domani\b/i.test(text)) {
-    results.push("entro domani");
-  }
-
-  if (/\bentro\s+oggi\b/i.test(text)) {
-    results.push("entro oggi");
-  }
-
-  return unique(results);
+function has(text, regex){
+  return regex.test(text);
 }
 
 
-/* -----------------------------
-   IMPORTI
------------------------------ */
+/* =========================================================
+   OGGETTO PRINCIPALE
+========================================================= */
 
-function extractMoney(text) {
+function detectObject(text){
 
-  const matches =
-    text.match(/\b\d+(?:[.,]\d{1,2})?\s*(?:€|euro)\b/gi) || [];
-
-  return unique(matches);
-}
-
-
-/* -----------------------------
-   LUOGO
------------------------------ */
-
-function extractPlace(text) {
-
-  const places = [];
-
-  const patterns = [
-    /\bal\s+(Comune)\b/gi,
-    /\bal\s+(comune)\b/gi,
-    /\bnel\s+(Comune)\b/gi,
-    /\bpresso\s+(il\s+)?([^.,]+)/gi,
-    /\ba\s+(Roma|Milano|Torino|Napoli|Bologna|Firenze|Venezia)\b/gi
+  const objects = [
+    ["modulo",/\bmodul[oi]\b/i],
+    ["documento",/\bdocument[oi]\b/i],
+    ["biglietto",/\bbigliett[oi]\b/i],
+    ["fattura",/\bfattur[ae]\b/i],
+    ["bolletta",/\bbollett[ae]\b/i],
+    ["contratto",/\bcontratt[oi]\b/i],
+    ["ordine",/\bordine\b/i],
+    ["pratica",/\bpratic[ae]\b/i],
+    ["email",/\bemail\b|\bmail\b/i],
+    ["appuntamento",/\bappuntamento\b|\bvisita\b|\bincontro\b/i]
   ];
 
-  patterns.forEach((regex, index) => {
-
-    let match;
-
-    while ((match = regex.exec(text)) !== null) {
-
-      if (index === 0 || index === 1 || index === 2) {
-        places.push("Comune");
-      }
-
-      if (index === 3) {
-        places.push(match[2].trim());
-      }
-
-      if (index === 4) {
-        places.push(match[1]);
-      }
-    }
-  });
-
-  return unique(places);
-}
-
-
-/* -----------------------------
-   OGGETTI / CONTESTO
------------------------------ */
-
-function extractObject(text) {
-
-  if (/\bmodulo\b/i.test(text)) return "modulo";
-  if (/\bdocumento\b/i.test(text)) return "documento";
-  if (/\bbiglietto\b/i.test(text)) return "biglietto";
-  if (/\bfattura\b/i.test(text)) return "fattura";
-  if (/\bbolletta\b/i.test(text)) return "bolletta";
-  if (/\bpratica\b/i.test(text)) return "pratica";
-  if (/\bcontratto\b/i.test(text)) return "contratto";
-  if (/\bordine\b/i.test(text)) return "ordine";
+  for(const item of objects){
+    if(item[1].test(text)) return item[0];
+  }
 
   return "";
 }
 
 
-/* -----------------------------
-   GIÀ FATTO
------------------------------ */
-
-function extractDone(text) {
-
-  const done = [];
-
-  if (/\b(?:è|sono)\s+già\s+compilat[oaie]\b/i.test(text) || /\b(?:modulo|documento)\s+è\s+già\s+compilat[oaie]\b/i.test(text)) {
-    done.push("Il modulo/documento è già compilato.");
-  }
-
-  if (/\bho\s+già\s+pagato\b/i.test(text) ||
-      /\bl'ho\s+già\s+pagato\b/i.test(text) ||
-      /\bl'ho\s+gia\s+pagato\b/i.test(text)) {
-
-    done.push("Il pagamento è già stato effettuato.");
-  }
-
-  if (/\bho\s+già\s+inviato\b/i.test(text) ||
-      /\bl'ho\s+già\s+inviato\b/i.test(text) ||
-      /\bl'ho\s+gia\s+inviato\b/i.test(text)) {
-
-    done.push("Il documento è già stato inviato.");
-  }
-
-  return unique(done);
-}
-
-
-/* -----------------------------
-   COSA MANCA
------------------------------ */
-
-function extractMissing(text, object) {
-
-  const missing = [];
-
-  /*
-    FIRMA
-  */
-
-  if (
-    /\bdevo\s+ancora\s+firmare\b/i.test(text) ||
-    /\bdevo\s+ancora\s+firmarlo\b/i.test(text) ||
-    /\bdevo\s+ancora\s+firmarla\b/i.test(text) ||
-    /\bdevo\s+firmare\b/i.test(text) ||
-    /\bmi\s+manca\s+la\s+firma\b/i.test(text)
-  ) {
-
-    if (object === "modulo" || object === "documento") {
-      missing.push("Firmare il modulo/documento.");
-    } else {
-      missing.push("Firmare il documento.");
-    }
-  }
-
-  /*
-    PAGAMENTO
-  */
-
-  if (
-    /\bdevo\s+ancora\s+pagare\b/i.test(text) ||
-    /\bnon\s+l'ho\s+ancora\s+pagato\b/i.test(text) ||
-    /\bnon\s+ho\s+ancora\s+pagato\b/i.test(text) ||
-    /\bdevo\s+pagarl[oa]\b/i.test(text)
-  ) {
-
-    missing.push("Effettuare il pagamento.");
-  }
-
-  /*
-    ACQUISTO
-  */
-
-  if (
-    /\bdevo\s+ancora\s+comprare\b/i.test(text) ||
-    /\bdevo\s+comprarl[oa]\b/i.test(text) ||
-    /\bnon\s+l'ho\s+ancora\s+comprat[oa]\b/i.test(text) ||
-    /\bnon\s+ho\s+ancora\s+comprat[oa]\b/i.test(text)
-  ) {
-
-    if (object === "biglietto") {
-      missing.push("Acquistare il biglietto.");
-    } else {
-      missing.push("Effettuare l'acquisto.");
-    }
-  }
-
-  /*
-    INVIO
-  */
-
-  if (
-    /\bdevo\s+ancora\s+inviare\b/i.test(text) ||
-    /\bdevo\s+inviarl[oa]\b/i.test(text) ||
-    /\bnon\s+l'ho\s+ancora\s+inviat[oa]\b/i.test(text) ||
-    /\bnon\s+ho\s+ancora\s+inviat[oa]\b/i.test(text)
-  ) {
-
-    missing.push("Inviare il documento.");
-  }
-
-  /*
-    CONSEGNA
-  */
-
-  if (
-    /\bdevo\s+ancora\s+consegnare\b/i.test(text) ||
-    /\bdevo\s+consegnarl[oa]\b/i.test(text) ||
-    /\bdevo\s+presentare\b/i.test(text) ||
-    /\bdevo\s+presentarl[oa]\b/i.test(text)
-  ) {
-
-    missing.push("Consegnare o presentare quanto richiesto.");
-  }
-
-  return unique(missing);
-}
-
-
-/* -----------------------------
-   COSA RICORDARE / PORTARE
------------------------------ */
-
-function extractRemember(text, object) {
-
-  const remember = [];
-
-  if (
-    /\bportare\s+con\s+me\b/i.test(text) ||
-    /\bportarlo\s+con\s+me\b/i.test(text) ||
-    /\bportarla\s+con\s+me\b/i.test(text) ||
-    /\bportarlo\b/i.test(text) ||
-    /\bportarla\b/i.test(text)
-  ) {
-
-    if (object === "modulo") {
-      remember.push("Portare il modulo.");
-    } else if (object === "documento") {
-      remember.push("Portare il documento.");
-    } else if (object === "biglietto") {
-      remember.push("Portare il biglietto.");
-    } else {
-      remember.push("Portare con sé quanto necessario.");
-    }
-  }
-
-  if (/\bricordarmi\b/i.test(text)) {
-
-    const rememberMatch =
-      text.match(/ricordarmi\s+(?:di\s+)?([^.,]+)/i);
-
-    if (rememberMatch) {
-      remember.push(
-        "Ricordare: " + rememberMatch[1].trim() + "."
-      );
-    }
-  }
-
-  return unique(remember);
-}
-
-
-/* -----------------------------
-   AZIONI GENERICHE
------------------------------ */
-
-function extractTasks(text) {
-
-  const tasks = [];
-
-  if (/\bdevo\s+(?:andare|recarmi)\b/i.test(text)) {
-    tasks.push("Recarsi nel luogo indicato.");
-  }
-
-  if (/\bdevo\s+consegnare\b/i.test(text)) {
-    tasks.push("Consegnare quanto richiesto.");
-  }
-
-  if (/\bdevo\s+portare\b/i.test(text)) {
-    tasks.push("Portare quanto necessario.");
-  }
-
-  if (/\bdevo\s+comprare\b/i.test(text)) {
-    tasks.push("Effettuare l'acquisto.");
-  }
-
-  if (/\bdevo\s+pagare\b/i.test(text)) {
-    tasks.push("Effettuare il pagamento.");
-  }
-
-  if (/\bdevo\s+inviare\b/i.test(text)) {
-    tasks.push("Inviare quanto richiesto.");
-  }
-
-  return unique(tasks);
-}
-
-
-/* -----------------------------
+/* =========================================================
    CATEGORIA
------------------------------ */
+========================================================= */
 
-function detectCategory(text) {
+function detectCategory(text){
 
-  if (
-    /\bpagare\b|\bpagamento\b|\bpagato\b|\bbolletta\b|\bfattura\b|\beuro\b/i.test(text)
-  ) {
+  if(
+    /\bpagare\b|\bpagamento\b|\bpagato\b|\bbolletta\b|\bfattura\b|\beuro\b|\b€\b/i.test(text)
+  ){
     return "Bolletta / pagamento";
   }
 
-  if (
-    /\bappuntamento\b|\bvisita\b|\bincontro\b|\bora\b|\ball[e']\s+\d/i.test(text)
-  ) {
+  if(
+    /\bappuntamento\b|\bvisita\b|\bincontro\b/i.test(text)
+  ){
     return "Appuntamento";
   }
 
-  if (
-    /\bmodulo\b|\bdocumento\b|\bdocumenti\b|\bcomune\b|\bfirma\b|\bfirmare\b|\bfirmarlo\b|\bconsegnare\b|\bpresentare\b|\bpratica\b/i.test(text)
-  ) {
+  if(
+    /\bmodulo\b|\bdocumento\b|\bcomune\b|\bfirma\b|\bfirmare\b|\bfirmarlo\b|\bpratica\b|\bconsegnare\b|\bpresentare\b/i.test(text)
+  ){
     return "Documento / pratica";
   }
 
-  if (
+  if(
     /\bbiglietto\b|\bprenotare\b|\bprenotazione\b|\bcomprare\b|\bacquistare\b|\bordine\b/i.test(text)
-  ) {
+  ){
     return "Acquisto / ordine";
   }
 
-  if (
+  if(
     /\blavoro\b|\bcapo\b|\bcollega\b|\bcliente\b|\bturno\b/i.test(text)
-  ) {
+  ){
     return "Lavoro";
   }
 
-  if (
-    /\bcasa\b|\bpulire\b|\bspesa\b|\bspesa\b|\briordinare\b/i.test(text)
-  ) {
+  if(
+    /\bcasa\b|\bpulire\b|\briordinare\b|\bspesa\b/i.test(text)
+  ){
     return "Casa";
   }
 
@@ -598,25 +254,387 @@ function detectCategory(text) {
 }
 
 
-/* -----------------------------
+/* =========================================================
+   DATA E ORA
+========================================================= */
+
+function extractDateTime(text){
+
+  const result=[];
+
+  const weekday =
+    /\b(lunedì|lunedi|martedì|martedi|mercoledì|mercoledi|giovedì|giovedi|venerdì|venerdi|sabato|domenica)(?:\s+(mattina|pomeriggio|sera|notte))?\b/gi;
+
+  let m;
+
+  while((m=weekday.exec(text))!==null){
+    result.push(
+      m[2] ? `${m[1]} ${m[2]}` : m[1]
+    );
+  }
+
+  const relative =
+    /\b(oggi|domani|dopodomani)(?:\s+(mattina|pomeriggio|sera|notte))?\b/gi;
+
+  while((m=relative.exec(text))!==null){
+    result.push(
+      m[2] ? `${m[1]} ${m[2]}` : m[1]
+    );
+  }
+
+  const numeric =
+    /\b\d{1,2}[\/.-]\d{1,2}(?:[\/.-]\d{2,4})?\b/g;
+
+  result.push(...(text.match(numeric)||[]));
+
+  const month =
+    /\b\d{1,2}\s+(gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre)\b/gi;
+
+  result.push(...(text.match(month)||[]));
+
+  const time =
+    /\b(?:alle|ore)\s+([01]?\d|2[0-3])(?::([0-5]\d))?\b/gi;
+
+  while((m=time.exec(text))!==null){
+    result.push(
+      m[2]
+      ? `ore ${m[1]}:${m[2]}`
+      : `ore ${m[1]}:00`
+    );
+  }
+
+  if(/\bentro\s+oggi\b/i.test(text)){
+    result.push("entro oggi");
+  }
+
+  if(/\bentro\s+domani\b/i.test(text)){
+    result.push("entro domani");
+  }
+
+  /*
+    Se "entro domani" è presente,
+    non aggiungiamo anche "domani":
+    evita duplicati.
+  */
+
+  if(result.includes("entro domani")){
+    const index=result.indexOf("domani");
+    if(index!==-1) result.splice(index,1);
+  }
+
+  if(result.includes("entro oggi")){
+    const index=result.indexOf("oggi");
+    if(index!==-1) result.splice(index,1);
+  }
+
+  return unique(result);
+}
+
+
+/* =========================================================
+   IMPORTI
+========================================================= */
+
+function extractMoney(text){
+
+  return unique(
+    text.match(
+      /\b\d+(?:[.,]\d{1,2})?\s*(?:€|euro)\b/gi
+    )||[]
+  );
+}
+
+
+/* =========================================================
+   LUOGO
+========================================================= */
+
+function extractPlace(text){
+
+  const places=[];
+
+  if(/\bal\s+Comune\b/i.test(text) ||
+     /\bnel\s+Comune\b/i.test(text)){
+    places.push("Comune");
+  }
+
+  const cities =
+    text.match(
+      /\b(Roma|Milano|Torino|Napoli|Bologna|Firenze|Venezia)\b/gi
+    )||[];
+
+  places.push(...cities);
+
+  const presso =
+    text.match(/\bpresso\s+(?:il|la)?\s*([^,.]+)/i);
+
+  if(presso && presso[1]){
+    places.push(presso[1].trim());
+  }
+
+  return unique(places);
+}
+
+
+/* =========================================================
+   FRASI DI STATO
+========================================================= */
+
+function extractDone(text){
+
+  const done=[];
+
+  /*
+    MODULO / DOCUMENTO COMPILATO
+  */
+
+  if(
+    /\b(?:il|la)\s+(?:modulo|documento)\s+è\s+già\s+compilat[oa]\b/i.test(text) ||
+    /\b(?:modulo|documento)\s+è\s+già\s+compilat[oa]\b/i.test(text)
+  ){
+    done.push("Il modulo/documento è già compilato.");
+  }
+
+  /*
+    PAGAMENTO GIÀ FATTO
+  */
+
+  if(
+    /\bho\s+già\s+pagato\b/i.test(text) ||
+    /\bl'ho\s+già\s+pagato\b/i.test(text)
+  ){
+    done.push("Il pagamento è già stato effettuato.");
+  }
+
+  /*
+    INVIO GIÀ FATTO
+  */
+
+  if(
+    /\bho\s+già\s+inviato\b/i.test(text) ||
+    /\bl'ho\s+già\s+inviato\b/i.test(text)
+  ){
+    done.push("Il documento è già stato inviato.");
+  }
+
+  /*
+    ACQUISTO GIÀ FATTO
+  */
+
+  if(
+    /\bho\s+già\s+comprato\b/i.test(text) ||
+    /\bl'ho\s+già\s+comprato\b/i.test(text)
+  ){
+    done.push("L'acquisto è già stato effettuato.");
+  }
+
+  return unique(done);
+}
+
+
+/* =========================================================
+   AZIONI MANCANTI
+========================================================= */
+
+function extractMissing(text, object){
+
+  const missing=[];
+
+  /*
+    FIRMA
+  */
+
+  if(
+    /\bdevo\s+ancora\s+firmare\b/i.test(text) ||
+    /\bdevo\s+ancora\s+firmarlo\b/i.test(text) ||
+    /\bdevo\s+ancora\s+firmarla\b/i.test(text) ||
+    /\bmi\s+manca\s+la\s+firma\b/i.test(text)
+  ){
+    missing.push(
+      object==="modulo"
+      ? "Firmare il modulo."
+      : "Firmare il documento."
+    );
+  }
+
+  /*
+    PAGAMENTO
+  */
+
+  if(
+    /\bdevo\s+ancora\s+pagare\b/i.test(text) ||
+    /\bnon\s+ho\s+ancora\s+pagato\b/i.test(text) ||
+    /\bnon\s+l'ho\s+ancora\s+pagato\b/i.test(text) ||
+    /\bnon\s+ho\s+ancora\s+effettuato\s+il\s+pagamento\b/i.test(text) ||
+    /\bdevo\s+pagarl[oa]\b/i.test(text)
+  ){
+    missing.push("Effettuare il pagamento.");
+  }
+
+  /*
+    ACQUISTO
+  */
+
+  if(
+    /\bdevo\s+ancora\s+comprare\b/i.test(text) ||
+    /\bdevo\s+comprarl[oa]\b/i.test(text) ||
+    /\bnon\s+ho\s+ancora\s+comprat[oa]\b/i.test(text) ||
+    /\bnon\s+l'ho\s+ancora\s+comprat[oa]\b/i.test(text)
+  ){
+    missing.push(
+      object==="biglietto"
+      ? "Acquistare il biglietto."
+      : "Effettuare l'acquisto."
+    );
+  }
+
+  /*
+    INVIO
+  */
+
+  if(
+    /\bdevo\s+ancora\s+inviare\b/i.test(text) ||
+    /\bdevo\s+inviarl[oa]\b/i.test(text) ||
+    /\bnon\s+ho\s+ancora\s+inviat[oa]\b/i.test(text) ||
+    /\bnon\s+l'ho\s+ancora\s+inviat[oa]\b/i.test(text)
+  ){
+    missing.push("Inviare il documento.");
+  }
+
+  /*
+    CONSEGNA
+  */
+
+  if(
+    /\bdevo\s+ancora\s+consegnare\b/i.test(text) ||
+    /\bdevo\s+consegnarl[oa]\b/i.test(text) ||
+    /\bdevo\s+presentare\b/i.test(text) ||
+    /\bdevo\s+presentarl[oa]\b/i.test(text)
+  ){
+    missing.push("Consegnare quanto richiesto.");
+  }
+
+  /*
+    ANDARE / RECarsi
+  */
+
+  if(
+    /\bdevo\s+andare\b/i.test(text) ||
+    /\bdevo\s+recarmi\b/i.test(text)
+  ){
+    missing.push("Recarsi nel luogo indicato.");
+  }
+
+  return unique(missing);
+}
+
+
+/* =========================================================
+   AZIONI ESPLICITE
+========================================================= */
+
+function extractTasks(text){
+
+  const tasks=[];
+
+  if(/\bdevo\s+consegnare\b/i.test(text)){
+    tasks.push("Consegnare quanto richiesto.");
+  }
+
+  if(/\bdevo\s+presentare\b/i.test(text)){
+    tasks.push("Presentare quanto richiesto.");
+  }
+
+  if(/\bdevo\s+andare\b/i.test(text)){
+    tasks.push("Recarsi nel luogo indicato.");
+  }
+
+  if(/\bdevo\s+recarmi\b/i.test(text)){
+    tasks.push("Recarsi nel luogo indicato.");
+  }
+
+  if(/\bdevo\s+portare\b/i.test(text)){
+    tasks.push("Portare quanto necessario.");
+  }
+
+  if(/\bdevo\s+comprare\b/i.test(text)){
+    tasks.push("Effettuare l'acquisto.");
+  }
+
+  if(/\bdevo\s+pagare\b/i.test(text)){
+    tasks.push("Effettuare il pagamento.");
+  }
+
+  if(/\bdevo\s+inviare\b/i.test(text)){
+    tasks.push("Inviare quanto richiesto.");
+  }
+
+  return unique(tasks);
+}
+
+
+/* =========================================================
+   COSA PORTARE / RICORDARE
+========================================================= */
+
+function extractRemember(text,object){
+
+  const remember=[];
+
+  if(
+    /\bportare\s+con\s+me\b/i.test(text) ||
+    /\bportarlo\s+con\s+me\b/i.test(text) ||
+    /\bportarla\s+con\s+me\b/i.test(text) ||
+    /\bportarlo\b/i.test(text) ||
+    /\bportarla\b/i.test(text)
+  ){
+
+    if(object==="modulo"){
+      remember.push("Portare il modulo.");
+    }
+    else if(object==="documento"){
+      remember.push("Portare il documento.");
+    }
+    else if(object==="biglietto"){
+      remember.push("Portare il biglietto.");
+    }
+    else{
+      remember.push("Portare quanto necessario.");
+    }
+  }
+
+  const rememberMatch =
+    text.match(/\bricordarmi\s+(?:di\s+)?([^,.]+)/i);
+
+  if(rememberMatch){
+    remember.push(
+      "Ricordare: "+rememberMatch[1].trim()+"."
+    );
+  }
+
+  return unique(remember);
+}
+
+
+/* =========================================================
    PRIORITÀ
------------------------------ */
+========================================================= */
 
-function detectPriority(text, dates, missing) {
+function detectPriority(text,dates,missing){
 
-  if (
+  if(
     /\burgente\b|\bsubito\b|\bscadenza\b|\bentro oggi\b|\bentro domani\b/i.test(text)
-  ) {
+  ){
     return "ALTA";
   }
 
-  if (missing.length > 0 && dates.length > 0) {
+  if(missing.length && dates.length){
     return "ALTA";
   }
 
-  if (
+  if(
     /\bdevo\b|\bnecessario\b|\bimportante\b|\bappuntamento\b/i.test(text)
-  ) {
+  ){
     return "MEDIA";
   }
 
@@ -624,164 +642,123 @@ function detectPriority(text, dates, missing) {
 }
 
 
-/* -----------------------------
+/* =========================================================
    PRIMA AZIONE
------------------------------ */
+========================================================= */
 
-function buildFirstAction(missing, tasks, remember, object) {
+function buildFirstAction(missing,object){
 
-  /*
-    La prima azione deve sempre privilegiare
-    ciò che blocca il resto.
-  */
-
-  if (missing.length > 0) {
-
-    if (/firmare/i.test(missing[0])) {
-      return object === "modulo"
-        ? "Firma il modulo."
-        : "Firma il documento.";
-    }
-
-    if (/pagamento/i.test(missing[0])) {
-      return "Effettua il pagamento.";
-    }
-
-    if (/acquistare/i.test(missing[0])) {
-      return "Acquista quanto necessario.";
-    }
-
-    if (/inviare/i.test(missing[0])) {
-      return "Invia il documento.";
-    }
-
-    if (/consegnare/i.test(missing[0])) {
-      return "Prepara la consegna.";
-    }
-
-    return missing[0];
+  if(!missing.length){
+    return "Definisci la prima azione concreta.";
   }
 
-  if (tasks.length > 0) {
-    return tasks[0];
+  const first=missing[0];
+
+  if(/Firmare il modulo/i.test(first)){
+    return "Firma il modulo.";
   }
 
-  if (remember.length > 0) {
-    return remember[0];
+  if(/Firmare il documento/i.test(first)){
+    return "Firma il documento.";
   }
 
-  return "Definisci la prima azione concreta.";
+  if(/Effettuare il pagamento/i.test(first)){
+    return "Effettua il pagamento.";
+  }
+
+  if(/Acquistare il biglietto/i.test(first)){
+    return "Acquista il biglietto.";
+  }
+
+  if(/Effettuare l'acquisto/i.test(first)){
+    return "Effettua l'acquisto.";
+  }
+
+  if(/Inviare/i.test(first)){
+    return "Invia il documento.";
+  }
+
+  if(/Consegnare/i.test(first)){
+    return "Prepara la consegna.";
+  }
+
+  return first;
 }
 
 
-/* -----------------------------
-   SEQUENZA
------------------------------ */
+/* =========================================================
+   SEQUENZA LOGICA
+========================================================= */
 
-function buildSteps(text, missing, tasks, remember, dates, object) {
+function buildSequence(missing,tasks,remember){
 
-  const steps = [];
+  const sequence=[];
 
   /*
-    Prima le azioni bloccanti.
+    1. Azioni bloccanti
   */
 
-  missing.forEach(item => {
-
-    if (!steps.includes(item)) {
-      steps.push(item);
+  missing.forEach(item=>{
+    if(!sequence.includes(item)){
+      sequence.push(item);
     }
   });
 
   /*
-    Poi le azioni generiche.
+    2. Azioni esplicite
   */
 
-  tasks.forEach(item => {
-
-    if (!steps.includes(item)) {
-      steps.push(item);
+  tasks.forEach(item=>{
+    if(!sequence.includes(item)){
+      sequence.push(item);
     }
   });
 
   /*
-    Poi ciò che va ricordato.
+    3. Cose da portare
   */
 
-  remember.forEach(item => {
-
-    if (!steps.includes(item)) {
-      steps.push(item);
+  remember.forEach(item=>{
+    if(!sequence.includes(item)){
+      sequence.push(item);
     }
   });
 
-  /*
-    Se c'è una data ma nessuna azione,
-    suggeriamo comunque una verifica.
-  */
-
-  if (
-    dates.length > 0 &&
-    steps.length === 0
-  ) {
-    steps.push("Verificare l'appuntamento o la scadenza indicata.");
-  }
-
-  /*
-    Se non è emerso nulla.
-  */
-
-  if (steps.length === 0) {
-    steps.push("Definire la prima azione concreta.");
-  }
-
-  return steps;
+  return sequence.length
+    ? sequence
+    : ["Definire la prima azione concreta."];
 }
 
 
-/* -----------------------------
+/* =========================================================
    AVVISI
------------------------------ */
+========================================================= */
 
-function buildWarnings(text, dates, money, missing) {
+function buildWarnings(text,dates){
 
-  const warnings = [];
+  const warnings=[];
 
-  if (dates.length === 0) {
-    warnings.push("Non è stata rilevata una data o una scadenza.");
-  }
-
-  if (
-    /\bentro\b/i.test(text) &&
-    dates.length === 0
-  ) {
-    warnings.push("È presente un riferimento a una scadenza, ma la data non è stata identificata.");
-  }
-
-  if (
-    money.length > 0 &&
-    missing.some(x => /pagamento/i.test(x)) &&
-    !/\bentro\b|\bscadenza\b/i.test(text)
-  ) {
-    warnings.push("È stato rilevato un importo, ma non una scadenza esplicita.");
+  if(!dates.length){
+    warnings.push(
+      "Non è stata rilevata una data o una scadenza."
+    );
   }
 
   return warnings;
 }
 
 
-/* -----------------------------
-   ANALISI
------------------------------ */
+/* =========================================================
+   ANALISI PRINCIPALE
+========================================================= */
 
-function analyze() {
+function analyze(){
 
-  const raw = document.getElementById("input").value;
+  const raw=document.getElementById("input").value;
+  const text=normalize(raw);
 
-  const text = clean(raw);
-
-  if (!text) {
-    document.getElementById("output").innerHTML = `
+  if(!text){
+    document.getElementById("output").innerHTML=`
       <div class="card">
         <p class="empty">Scrivi prima cosa devi fare.</p>
       </div>
@@ -789,47 +766,46 @@ function analyze() {
     return;
   }
 
-  const object = extractObject(text);
-  const dates = extractDateTime(text);
-  const money = extractMoney(text);
-  const places = extractPlace(text);
-  const done = extractDone(text);
-  const missing = extractMissing(text, object);
-  const remember = extractRemember(text, object);
-  const tasks = extractTasks(text);
+  const object=detectObject(text);
 
-  const category = detectCategory(text);
-  const priority = detectPriority(text, dates, missing);
+  const category=detectCategory(text);
 
-  const firstAction =
-    buildFirstAction(
+  const dates=extractDateTime(text);
+
+  const money=extractMoney(text);
+
+  const places=extractPlace(text);
+
+  const done=extractDone(text);
+
+  const missing=extractMissing(text,object);
+
+  const tasks=extractTasks(text);
+
+  const remember=extractRemember(text,object);
+
+  const priority=
+    detectPriority(text,dates,missing);
+
+  const firstAction=
+    buildFirstAction(missing,object);
+
+  const sequence=
+    buildSequence(
       missing,
       tasks,
-      remember,
-      object
+      remember
     );
 
-  const steps =
-    buildSteps(
-      text,
-      missing,
-      tasks,
-      remember,
-      dates,
-      object
-    );
+  const warnings=
+    buildWarnings(text,dates);
 
-  const warnings =
-    buildWarnings(
-      text,
-      dates,
-      money,
-      missing
-    );
+  let html="";
 
-  let html = "";
 
-  html += `
+  /* ANALISI */
+
+  html+=`
     <div class="card">
       <h2>Analisi</h2>
       <span class="tag">${esc(category)}</span>
@@ -838,7 +814,9 @@ function analyze() {
   `;
 
 
-  html += `
+  /* PRIMA AZIONE */
+
+  html+=`
     <div class="card">
       <h2>FAI QUESTO ADESSO</h2>
       <div class="big-action">
@@ -848,26 +826,33 @@ function analyze() {
   `;
 
 
-  html += `
+  /* SEQUENZA */
+
+  html+=`
     <div class="card">
       <h2>Sequenza</h2>
       <ol>
-        ${steps.map(step => `<li>${esc(step)}</li>`).join("")}
+        ${sequence
+          .map(x=>`<li>${esc(x)}</li>`)
+          .join("")}
       </ol>
     </div>
   `;
 
 
-  html += `
+  /* COSA HO CAPITO */
+
+  html+=`
     <div class="card">
+
       <h2>Cosa ho capito</h2>
 
       <p>
         <strong>Cosa devi fare:</strong><br>
         ${
           tasks.length
-            ? tasks.map(x => esc(x)).join("<br>")
-            : "<span class='empty'>Nessuna azione generica rilevata.</span>"
+          ? tasks.map(esc).join("<br>")
+          : "<span class='empty'>Nessuna azione generica rilevata.</span>"
         }
       </p>
 
@@ -875,8 +860,8 @@ function analyze() {
         <strong>Cosa manca:</strong><br>
         ${
           missing.length
-            ? missing.map(x => esc(x)).join("<br>")
-            : "<span class='empty'>Non sono state rilevate azioni mancanti.</span>"
+          ? missing.map(esc).join("<br>")
+          : "<span class='empty'>Nessuna azione mancante rilevata.</span>"
         }
       </p>
 
@@ -884,8 +869,8 @@ function analyze() {
         <strong>Cosa è già fatto:</strong><br>
         ${
           done.length
-            ? done.map(x => esc(x)).join("<br>")
-            : "<span class='empty'>Nessuna azione già completata rilevata.</span>"
+          ? done.map(esc).join("<br>")
+          : "<span class='empty'>Nessuna azione già completata rilevata.</span>"
         }
       </p>
 
@@ -893,8 +878,8 @@ function analyze() {
         <strong>Luogo:</strong><br>
         ${
           places.length
-            ? places.map(x => esc(x)).join(", ")
-            : "<span class='empty'>Non rilevato.</span>"
+          ? places.map(esc).join(", ")
+          : "<span class='empty'>Non rilevato.</span>"
         }
       </p>
 
@@ -902,8 +887,8 @@ function analyze() {
         <strong>Data / Ora:</strong><br>
         ${
           dates.length
-            ? dates.map(x => esc(x)).join(", ")
-            : "<span class='empty'>Non rilevata.</span>"
+          ? dates.map(esc).join(", ")
+          : "<span class='empty'>Non rilevata.</span>"
         }
       </p>
 
@@ -911,50 +896,59 @@ function analyze() {
         <strong>Da portare / Ricordare:</strong><br>
         ${
           remember.length
-            ? remember.map(x => esc(x)).join("<br>")
-            : "<span class='empty'>Niente di specifico rilevato.</span>"
+          ? remember.map(esc).join("<br>")
+          : "<span class='empty'>Niente di specifico rilevato.</span>"
         }
       </p>
+
     </div>
   `;
 
 
-  if (money.length > 0) {
+  /* IMPORTI */
 
-    html += `
+  if(money.length){
+
+    html+=`
       <div class="card">
         <h2>Importi</h2>
-        <p>${money.map(x => `<span class="tag">${esc(x)}</span>`).join("")}</p>
+        ${money
+          .map(x=>`<span class="tag">${esc(x)}</span>`)
+          .join("")}
       </div>
     `;
   }
 
 
-  if (warnings.length > 0) {
+  /* AVVISI */
 
-    html += `
+  if(warnings.length){
+
+    html+=`
       <div class="card">
         <h2>Cosa controllare</h2>
         <ul>
-          ${warnings.map(x => `<li>${esc(x)}</li>`).join("")}
+          ${warnings
+            .map(x=>`<li>${esc(x)}</li>`)
+            .join("")}
         </ul>
       </div>
     `;
   }
 
 
-  document.getElementById("output").innerHTML = html;
+  document.getElementById("output").innerHTML=html;
 }
 
 
-/* -----------------------------
+/* =========================================================
    CANCELLA
------------------------------ */
+========================================================= */
 
-function clearAll() {
+function clearAll(){
 
-  document.getElementById("input").value = "";
-  document.getElementById("output").innerHTML = "";
+  document.getElementById("input").value="";
+  document.getElementById("output").innerHTML="";
 }
 
 </script>
