@@ -6,188 +6,151 @@
 <title>DA FARE</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:#f4f5f7;
-  color:#171717;
+* {
+  box-sizing: border-box;
 }
 
-.container{
-  width:min(900px,92%);
-  margin:auto;
-  padding:30px 0 60px;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f5f5f7;
+  color: #171717;
 }
 
-.logo{
-  font-size:13px;
-  font-weight:800;
-  letter-spacing:2px;
-  color:#666;
+.container {
+  width: min(920px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 50px 0 70px;
 }
 
-h1{
-  font-size:42px;
-  line-height:1;
-  margin:10px 0;
+header {
+  margin-bottom: 28px;
 }
 
-.subtitle{
-  color:#666;
-  font-size:17px;
-  line-height:1.5;
+.logo {
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
 }
 
-.card{
-  background:#fff;
-  border-radius:20px;
-  padding:22px;
-  margin-top:18px;
-  box-shadow:0 8px 30px rgba(0,0,0,.06);
+.subtitle {
+  margin-top: 8px;
+  color: #666;
+  font-size: 17px;
 }
 
-textarea{
-  width:100%;
-  min-height:190px;
-  border:1px solid #ddd;
-  border-radius:14px;
-  padding:16px;
-  font-size:16px;
-  line-height:1.5;
-  resize:vertical;
-  outline:none;
+textarea {
+  width: 100%;
+  min-height: 190px;
+  resize: vertical;
+  border: 1px solid #d6d6d6;
+  border-radius: 18px;
+  padding: 20px;
+  font-size: 17px;
+  line-height: 1.5;
+  outline: none;
+  background: white;
 }
 
-textarea:focus{
-  border-color:#111;
+textarea:focus {
+  border-color: #999;
 }
 
-.buttons{
-  display:flex;
-  gap:10px;
-  margin-top:12px;
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
 }
 
-button{
-  border:0;
-  border-radius:12px;
-  padding:13px 18px;
-  font-size:15px;
-  font-weight:700;
-  cursor:pointer;
+button {
+  border: 0;
+  border-radius: 12px;
+  padding: 13px 19px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.primary{
-  flex:1;
-  background:#111;
-  color:#fff;
+.primary {
+  background: #171717;
+  color: white;
 }
 
-.secondary{
-  background:#eee;
-  color:#222;
+.secondary {
+  background: #e7e7e7;
+  color: #222;
 }
 
-.result{
-  display:none;
+#output {
+  margin-top: 28px;
 }
 
-.label{
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:1px;
-  color:#777;
-  margin-bottom:8px;
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 14px;
+  border: 1px solid #e5e5e5;
 }
 
-.category{
-  font-size:25px;
-  font-weight:800;
+.card h2 {
+  font-size: 16px;
+  margin: 0 0 12px;
 }
 
-.summary{
-  margin-top:10px;
-  color:#555;
-  line-height:1.5;
+.card p {
+  margin: 6px 0;
+  line-height: 1.5;
 }
 
-.priority{
-  display:inline-block;
-  margin-top:6px;
-  padding:7px 12px;
-  border-radius:20px;
-  background:#eee;
-  font-weight:800;
-  font-size:13px;
+.big-action {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
 }
 
-.now{
-  border-left:5px solid #111;
-  background:#f5f5f5;
-  padding:18px;
-  border-radius:12px;
-  font-size:20px;
-  font-weight:800;
+.tag {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #eeeeee;
+  font-size: 13px;
+  font-weight: 700;
+  margin-right: 6px;
+  margin-bottom: 6px;
 }
 
-.section{
-  margin-top:26px;
+ul {
+  margin: 8px 0 0;
+  padding-left: 22px;
 }
 
-.section h2{
-  font-size:19px;
-  margin:0 0 12px;
+li {
+  margin: 8px 0;
+  line-height: 1.45;
 }
 
-ol,ul{
-  margin:0;
-  padding-left:22px;
+.empty {
+  color: #777;
 }
 
-li{
-  margin:10px 0;
-  line-height:1.5;
-}
+@media (max-width: 600px) {
+  .container {
+    width: min(100% - 22px, 920px);
+    padding-top: 28px;
+  }
 
-.meta{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-}
+  .logo {
+    font-size: 32px;
+  }
 
-.metaBox{
-  background:#f7f7f7;
-  border-radius:12px;
-  padding:14px;
-}
+  .buttons {
+    flex-direction: column;
+  }
 
-.metaTitle{
-  font-size:11px;
-  color:#777;
-  font-weight:800;
-  margin-bottom:6px;
-}
-
-.metaValue{
-  font-weight:700;
-  line-height:1.5;
-}
-
-.empty{
-  color:#888;
-  font-weight:500;
-}
-
-.warning{
-  color:#555;
-}
-
-@media(max-width:600px){
-  h1{font-size:34px}
-  .buttons{flex-direction:column}
-  .meta{grid-template-columns:1fr}
+  button {
+    width: 100%;
+  }
 }
 </style>
 </head>
@@ -196,577 +159,802 @@ li{
 
 <div class="container">
 
-<div class="logo">DA FARE</div>
+  <header>
+    <div class="logo">DA FARE</div>
+    <div class="subtitle">
+      Dal caos all'azione.
+    </div>
+  </header>
 
-<h1>Dal caos all'azione.</h1>
+  <textarea id="input"
+    placeholder="Scrivi qui quello che devi fare...
 
-<div class="subtitle">
-Scrivi una situazione, un messaggio o un problema.
-DA FARE individua cosa conta, cosa manca e qual è il prossimo passo.
-</div>
-
-<div class="card">
-
-<textarea id="input" placeholder="Esempio:
+Esempio:
 Devo consegnare il modulo al Comune venerdì mattina. Il modulo è già compilato ma devo ancora firmarlo e portarlo con me."></textarea>
 
-<div class="buttons">
-<button class="primary" onclick="analyze()">Trasforma in azioni</button>
-<button class="secondary" onclick="clearAll()">Pulisci</button>
-</div>
+  <div class="buttons">
+    <button class="primary" onclick="analyze()">Trasforma in azioni</button>
+    <button class="secondary" onclick="clearAll()">Cancella</button>
+  </div>
 
-</div>
-
-<div id="result" class="result">
-
-<div class="card">
-
-<div class="label">ANALISI</div>
-<div id="category" class="category"></div>
-<div id="summary" class="summary"></div>
-
-<div class="section">
-<div class="label">PRIORITÀ</div>
-<div id="priority" class="priority"></div>
-</div>
-
-<div class="section">
-<div class="label">👉 FAI QUESTO ADESSO</div>
-<div id="firstAction" class="now"></div>
-</div>
-
-<div class="section">
-<h2>📋 Sequenza</h2>
-<ol id="steps"></ol>
-</div>
-
-<div class="section">
-<h2>🧠 Cosa ho capito</h2>
-
-<div class="meta">
-
-<div class="metaBox">
-<div class="metaTitle">COSA DEVI FARE</div>
-<div id="tasks" class="metaValue"></div>
-</div>
-
-<div class="metaBox">
-<div class="metaTitle">COSA MANCA</div>
-<div id="missing" class="metaValue"></div>
-</div>
-
-<div class="metaBox">
-<div class="metaTitle">COSA È GIÀ FATTO</div>
-<div id="done" class="metaValue"></div>
-</div>
-
-<div class="metaBox">
-<div class="metaTitle">LUOGO</div>
-<div id="place" class="metaValue"></div>
-</div>
-
-<div class="metaBox">
-<div class="metaTitle">DATA / ORA</div>
-<div id="dates" class="metaValue"></div>
-</div>
-
-<div class="metaBox">
-<div class="metaTitle">DA PORTARE / RICORDARE</div>
-<div id="remember" class="metaValue"></div>
-</div>
-
-</div>
-</div>
-
-<div class="section">
-<h2>💰 Importi</h2>
-<div id="money" class="metaValue"></div>
-</div>
-
-<div class="section">
-<h2>⚠️ Cosa controllare</h2>
-<ul id="warnings"></ul>
-</div>
-
-</div>
-</div>
+  <div id="output"></div>
 
 </div>
 
 <script>
 
-function clean(text){
+function clean(text) {
   return text
-    .replace(/\s+/g," ")
+    .replace(/[“”]/g, '"')
+    .replace(/[‘’]/g, "'")
+    .replace(/\s+/g, ' ')
     .trim();
 }
 
-function unique(arr){
+function esc(text) {
+  return String(text)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function unique(arr) {
   return [...new Set(arr.filter(Boolean))];
 }
 
-function esc(text){
-  return String(text)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
+/* -----------------------------
+   DATE / ORA
+----------------------------- */
 
-function valueOrEmpty(arr){
-  return arr.length ? arr.join("<br>") : '<span class="empty">Nessuno rilevato</span>';
-}
+function extractDateTime(text) {
 
+  const results = [];
 
-/* -------------------------
-   DATE E ORARI
-------------------------- */
+  const weekdays =
+    /\b(lunedì|lunedi|martedì|martedi|mercoledì|mercoledi|giovedì|giovedi|venerdì|venerdi|sabato|domenica)(?:\s+(mattina|pomeriggio|sera))?\b/gi;
 
-function extractDateTime(text){
+  let match;
 
-  const results=[];
+  while ((match = weekdays.exec(text)) !== null) {
 
-  const weekdays=text.match(
-    /\b(lunedì|lunedi|martedì|martedi|mercoledì|mercoledi|giovedì|giovedi|venerdì|venerdi|sabato|domenica)\b/gi
-  ) || [];
+    let day = match[1];
+    let moment = match[2];
 
-  results.push(...weekdays);
+    if (moment) {
+      results.push(`${day} ${moment}`);
+    } else {
+      results.push(day);
+    }
+  }
 
-  const relative=text.match(
-    /\b(oggi|domani|dopodomani)\b/gi
-  ) || [];
+  const relative =
+    /\b(oggi|domani|dopodomani)(?:\s+(mattina|pomeriggio|sera))?\b/gi;
 
-  results.push(...relative);
+  while ((match = relative.exec(text)) !== null) {
 
-  const dates=text.match(
-    /\b\d{1,2}[\/\-]\d{1,2}(?:[\/\-]\d{2,4})?\b/g
-  ) || [];
+    if (match[2]) {
+      results.push(`${match[1]} ${match[2]}`);
+    } else {
+      results.push(match[1]);
+    }
+  }
 
-  results.push(...dates);
+  const numericDates =
+    /\b\d{1,2}[\/.-]\d{1,2}(?:[\/.-]\d{2,4})?\b/g;
 
-  const months=text.match(
-    /\b\d{1,2}\s+(gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre)\b/gi
-  ) || [];
+  const nums = text.match(numericDates) || [];
+  results.push(...nums);
 
-  results.push(...months);
+  const months =
+    /\b\d{1,2}\s+(gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre)\b/gi;
 
-  const times=text.match(
-    /\b(?:[01]?\d|2[0-3])[:.][0-5]\d\b/g
-  ) || [];
+  const monthMatches = text.match(months) || [];
+  results.push(...monthMatches);
 
-  results.push(...times.map(x=>"ore "+x));
+  const times =
+    /\b(?:alle|ore)\s+([01]?\d|2[0-3])(?::([0-5]\d))?\b/gi;
 
-  const moments=text.match(
-    /\b(mattina|pomeriggio|sera|mezzogiorno)\b/gi
-  ) || [];
+  while ((match = times.exec(text)) !== null) {
 
-  results.push(...moments);
+    const hour = match[1];
+    const minute = match[2];
+
+    results.push(
+      minute
+        ? `ore ${hour}:${minute}`
+        : `ore ${hour}:00`
+    );
+  }
+
+  if (/\bentro\s+domani\b/i.test(text)) {
+    results.push("entro domani");
+  }
+
+  if (/\bentro\s+oggi\b/i.test(text)) {
+    results.push("entro oggi");
+  }
 
   return unique(results);
 }
 
 
-/* -------------------------
+/* -----------------------------
    IMPORTI
-------------------------- */
+----------------------------- */
 
-function extractMoney(text){
+function extractMoney(text) {
 
-  return unique(
-    text.match(
-      /(?:€\s*)?\d+(?:[.,]\d{1,2})?\s*(?:€|euro)/gi
-    ) || []
-  );
+  const matches =
+    text.match(/\b\d+(?:[.,]\d{1,2})?\s*(?:€|euro)\b/gi) || [];
+
+  return unique(matches);
 }
 
 
-/* -------------------------
-   LUOGHI
-------------------------- */
+/* -----------------------------
+   LUOGO
+----------------------------- */
 
-function extractPlace(text){
+function extractPlace(text) {
 
-  const places=[];
+  const places = [];
 
-  const patterns=[
-    /\bal\s+Comune\b/gi,
-    /\bal\s+comune\b/gi,
-    /\bin\s+Comune\b/gi,
-    /\bin\s+comune\b/gi,
-    /\ba\s+Roma\b/gi,
-    /\ba\s+Milano\b/gi,
-    /\ba\s+Napoli\b/gi,
-    /\ba\s+Torino\b/gi,
-    /\ba\s+Bologna\b/gi,
-    /\ba\s+Firenze\b/gi,
-    /\ba\s+Venezia\b/gi
+  const patterns = [
+    /\bal\s+(Comune)\b/gi,
+    /\bal\s+(comune)\b/gi,
+    /\bnel\s+(Comune)\b/gi,
+    /\bpresso\s+(il\s+)?([^.,]+)/gi,
+    /\ba\s+(Roma|Milano|Torino|Napoli|Bologna|Firenze|Venezia)\b/gi
   ];
 
-  patterns.forEach(pattern=>{
-    const found=text.match(pattern)||[];
-    places.push(...found);
+  patterns.forEach((regex, index) => {
+
+    let match;
+
+    while ((match = regex.exec(text)) !== null) {
+
+      if (index === 0 || index === 1 || index === 2) {
+        places.push("Comune");
+      }
+
+      if (index === 3) {
+        places.push(match[2].trim());
+      }
+
+      if (index === 4) {
+        places.push(match[1]);
+      }
+    }
   });
 
-  return unique(
-    places.map(x=>x.charAt(0).toUpperCase()+x.slice(1))
-  );
+  return unique(places);
 }
 
 
-/* -------------------------
-   COSA È GIÀ FATTO
-------------------------- */
+/* -----------------------------
+   OGGETTI / CONTESTO
+----------------------------- */
 
-function extractDone(text){
+function extractObject(text) {
 
-  const done=[];
+  if (/\bmodulo\b/i.test(text)) return "modulo";
+  if (/\bdocumento\b/i.test(text)) return "documento";
+  if (/\bbiglietto\b/i.test(text)) return "biglietto";
+  if (/\bfattura\b/i.test(text)) return "fattura";
+  if (/\bbolletta\b/i.test(text)) return "bolletta";
+  if (/\bpratica\b/i.test(text)) return "pratica";
+  if (/\bcontratto\b/i.test(text)) return "contratto";
+  if (/\bordine\b/i.test(text)) return "ordine";
 
-  if(/già compilato|già compilata|già fatto|già effettuato|già pagato|già acquistato|già inviato|già firmato/i.test(text)){
-    const matches=text.match(
-      /(?:è|è già|ho|abbiamo)\s+[^.]*?\b(già\s+(?:compilato|compilata|fatto|effettuato|pagato|acquistato|inviato|firmato))\b/gi
-    ) || [];
+  return "";
+}
 
-    done.push(...matches);
+
+/* -----------------------------
+   GIÀ FATTO
+----------------------------- */
+
+function extractDone(text) {
+
+  const done = [];
+
+  if (/\b(?:è|sono)\s+già\s+compilat[oaie]\b/i.test(text)) {
+    done.push("Il modulo/documento è già compilato.");
   }
 
-  if(/il modulo è già compilato/i.test(text))
-    done.push("Il modulo è già compilato.");
+  if (/\bho\s+già\s+pagato\b/i.test(text) ||
+      /\bl'ho\s+già\s+pagato\b/i.test(text) ||
+      /\bl'ho\s+gia\s+pagato\b/i.test(text)) {
 
-  if(/già pagato/i.test(text))
-    done.push("Il pagamento risulta già effettuato.");
+    done.push("Il pagamento è già stato effettuato.");
+  }
 
-  if(/già acquistato/i.test(text))
-    done.push("L'acquisto risulta già effettuato.");
+  if (/\bho\s+già\s+inviato\b/i.test(text) ||
+      /\bl'ho\s+già\s+inviato\b/i.test(text) ||
+      /\bl'ho\s+gia\s+inviato\b/i.test(text)) {
+
+    done.push("Il documento è già stato inviato.");
+  }
 
   return unique(done);
 }
 
 
-/* -------------------------
+/* -----------------------------
    COSA MANCA
-------------------------- */
+----------------------------- */
 
-function extractMissing(text){
+function extractMissing(text, object) {
 
-  const missing=[];
+  const missing = [];
 
-  if(/devo ancora firmare|non ho ancora firmato/i.test(text))
-    missing.push("Firmare il documento.");
+  /*
+    FIRMA
+  */
 
-  if(/non ho ancora comprato|devo ancora comprare|non ho ancora acquistato|devo ancora acquistare/i.test(text))
-    missing.push("Completare l'acquisto.");
+  if (
+    /\bdevo\s+ancora\s+firmare\b/i.test(text) ||
+    /\bdevo\s+ancora\s+firmarlo\b/i.test(text) ||
+    /\bdevo\s+ancora\s+firmarla\b/i.test(text) ||
+    /\bdevo\s+firmare\b/i.test(text) ||
+    /\bmi\s+manca\s+la\s+firma\b/i.test(text)
+  ) {
 
-  if(/non ho ancora pagato|devo ancora pagare|non ho effettuato il pagamento/i.test(text))
+    if (object === "modulo" || object === "documento") {
+      missing.push("Firmare il modulo/documento.");
+    } else {
+      missing.push("Firmare il documento.");
+    }
+  }
+
+  /*
+    PAGAMENTO
+  */
+
+  if (
+    /\bdevo\s+ancora\s+pagare\b/i.test(text) ||
+    /\bnon\s+l'ho\s+ancora\s+pagato\b/i.test(text) ||
+    /\bnon\s+ho\s+ancora\s+pagato\b/i.test(text) ||
+    /\bdevo\s+pagarl[oa]\b/i.test(text)
+  ) {
+
     missing.push("Effettuare il pagamento.");
+  }
 
-  if(/devo ancora inviare|non ho ancora inviato/i.test(text))
-    missing.push("Inviare il documento o la comunicazione.");
+  /*
+    ACQUISTO
+  */
 
-  if(/devo ancora chiamare|non ho ancora chiamato/i.test(text))
-    missing.push("Effettuare la chiamata.");
+  if (
+    /\bdevo\s+ancora\s+comprare\b/i.test(text) ||
+    /\bdevo\s+comprarl[oa]\b/i.test(text) ||
+    /\bnon\s+l'ho\s+ancora\s+comprat[oa]\b/i.test(text) ||
+    /\bnon\s+ho\s+ancora\s+comprat[oa]\b/i.test(text)
+  ) {
 
-  if(/devo ancora prenotare|non ho ancora prenotato/i.test(text))
-    missing.push("Effettuare la prenotazione.");
+    if (object === "biglietto") {
+      missing.push("Acquistare il biglietto.");
+    } else {
+      missing.push("Effettuare l'acquisto.");
+    }
+  }
 
-  if(/non ho ancora il biglietto|devo ancora prendere il biglietto/i.test(text))
-    missing.push("Acquistare o recuperare il biglietto.");
+  /*
+    INVIO
+  */
+
+  if (
+    /\bdevo\s+ancora\s+inviare\b/i.test(text) ||
+    /\bdevo\s+inviarl[oa]\b/i.test(text) ||
+    /\bnon\s+l'ho\s+ancora\s+inviat[oa]\b/i.test(text) ||
+    /\bnon\s+ho\s+ancora\s+inviat[oa]\b/i.test(text)
+  ) {
+
+    missing.push("Inviare il documento.");
+  }
+
+  /*
+    CONSEGNA
+  */
+
+  if (
+    /\bdevo\s+ancora\s+consegnare\b/i.test(text) ||
+    /\bdevo\s+consegnarl[oa]\b/i.test(text) ||
+    /\bdevo\s+presentare\b/i.test(text) ||
+    /\bdevo\s+presentarl[oa]\b/i.test(text)
+  ) {
+
+    missing.push("Consegnare o presentare quanto richiesto.");
+  }
 
   return unique(missing);
 }
 
 
-/* -------------------------
-   COSE DA PORTARE
-------------------------- */
+/* -----------------------------
+   COSA RICORDARE / PORTARE
+----------------------------- */
 
-function extractRemember(text){
+function extractRemember(text, object) {
 
-  const remember=[];
+  const remember = [];
 
-  if(/\b(documento|documenti|carta d'identità|carta di identità|passaporto)\b/i.test(text))
-    remember.push("Portare il documento.");
+  if (
+    /\bportare\s+con\s+me\b/i.test(text) ||
+    /\bportarlo\s+con\s+me\b/i.test(text) ||
+    /\bportarla\s+con\s+me\b/i.test(text) ||
+    /\bportarlo\b/i.test(text) ||
+    /\bportarla\b/i.test(text)
+  ) {
 
-  if(/\bbiglietto\b/i.test(text))
-    remember.push("Avere con sé il biglietto.");
+    if (object === "modulo") {
+      remember.push("Portare il modulo.");
+    } else if (object === "documento") {
+      remember.push("Portare il documento.");
+    } else if (object === "biglietto") {
+      remember.push("Portare il biglietto.");
+    } else {
+      remember.push("Portare con sé quanto necessario.");
+    }
+  }
 
-  if(/\bricevuta\b/i.test(text))
-    remember.push("Portare o conservare la ricevuta.");
+  if (/\bricordarmi\b/i.test(text)) {
 
-  if(/\bmodulo\b/i.test(text) && /portare|con me/i.test(text))
-    remember.push("Portare il modulo.");
+    const rememberMatch =
+      text.match(/ricordarmi\s+(?:di\s+)?([^.,]+)/i);
 
-  if(/\bchiavi\b/i.test(text))
-    remember.push("Ricordarsi delle chiavi.");
+    if (rememberMatch) {
+      remember.push(
+        "Ricordare: " + rememberMatch[1].trim() + "."
+      );
+    }
+  }
 
   return unique(remember);
 }
 
 
-/* -------------------------
-   AZIONI ESPLICITE
-------------------------- */
+/* -----------------------------
+   AZIONI GENERICHE
+----------------------------- */
 
-function extractTasks(text){
+function extractTasks(text) {
 
-  const tasks=[];
+  const tasks = [];
 
-  if(/devo consegnare|devo portare|devo presentare/i.test(text))
-    tasks.push("Consegnare o presentare quanto richiesto.");
+  if (/\bdevo\s+(?:andare|recarmi)\b/i.test(text)) {
+    tasks.push("Recarsi nel luogo indicato.");
+  }
 
-  if(/devo andare|devo recarmi|devo raggiungere/i.test(text))
-    tasks.push("Organizzare lo spostamento.");
+  if (/\bdevo\s+consegnare\b/i.test(text)) {
+    tasks.push("Consegnare quanto richiesto.");
+  }
 
-  if(/devo pagare|effettuare il pagamento/i.test(text))
+  if (/\bdevo\s+portare\b/i.test(text)) {
+    tasks.push("Portare quanto necessario.");
+  }
+
+  if (/\bdevo\s+comprare\b/i.test(text)) {
+    tasks.push("Effettuare l'acquisto.");
+  }
+
+  if (/\bdevo\s+pagare\b/i.test(text)) {
     tasks.push("Effettuare il pagamento.");
+  }
 
-  if(/devo comprare|devo acquistare|comprare|acquistare/i.test(text))
-    tasks.push("Completare l'acquisto.");
-
-  if(/devo firmare|firmare/i.test(text))
-    tasks.push("Firmare il documento.");
-
-  if(/devo inviare|inviare|mandare/i.test(text))
-    tasks.push("Inviare il documento o la comunicazione.");
-
-  if(/devo chiamare|chiamare|telefonare/i.test(text))
-    tasks.push("Effettuare la chiamata.");
-
-  if(/devo prenotare|prenotare/i.test(text))
-    tasks.push("Effettuare la prenotazione.");
+  if (/\bdevo\s+inviare\b/i.test(text)) {
+    tasks.push("Inviare quanto richiesto.");
+  }
 
   return unique(tasks);
 }
 
 
-/* -------------------------
+/* -----------------------------
    CATEGORIA
-------------------------- */
+----------------------------- */
 
-function detectCategory(text){
+function detectCategory(text) {
 
-  if(/bollett|pagament|fattur|bonifico|addebito|devo pagare|pagare/i.test(text))
+  if (
+    /\bpagare\b|\bpagamento\b|\bpagato\b|\bbolletta\b|\bfattura\b|\beuro\b/i.test(text)
+  ) {
     return "Bolletta / pagamento";
+  }
 
-  if(/appuntament|prenotaz|visita|incontro|biglietto|treno|aereo|hotel/i.test(text))
-    return "Prenotazione / appuntamento";
+  if (
+    /\bappuntamento\b|\bvisita\b|\bincontro\b|\bora\b|\ball[e']\s+\d/i.test(text)
+  ) {
+    return "Appuntamento";
+  }
 
-  if(/modulo|documento|documenti|comune|firma|firmare|consegnare|presentare|pratica/i.test(text))
+  if (
+    /\bmodulo\b|\bdocumento\b|\bdocumenti\b|\bcomune\b|\bfirma\b|\bfirmare\b|\bfirmarlo\b|\bconsegnare\b|\bpresentare\b|\bpratica\b/i.test(text)
+  ) {
     return "Documento / pratica";
+  }
 
-  if(/ordine|spedizion|consegna|pacco|acquist/i.test(text))
+  if (
+    /\bbiglietto\b|\bprenotare\b|\bprenotazione\b|\bcomprare\b|\bacquistare\b|\bordine\b/i.test(text)
+  ) {
     return "Acquisto / ordine";
+  }
 
-  if(/lavoro|turno|capo|collega|azienda|ufficio|magazzino/i.test(text))
+  if (
+    /\blavoro\b|\bcapo\b|\bcollega\b|\bcliente\b|\bturno\b/i.test(text)
+  ) {
     return "Lavoro";
+  }
 
-  if(/casa|pulire|ripar|lavatrice|caldaia|spesa/i.test(text))
+  if (
+    /\bcasa\b|\bpulire\b|\bspesa\b|\bspesa\b|\briordinare\b/i.test(text)
+  ) {
     return "Casa";
+  }
 
-  return "Problema / attività";
+  return "Attività";
 }
 
 
-/* -------------------------
+/* -----------------------------
    PRIORITÀ
-------------------------- */
+----------------------------- */
 
-function detectPriority(text,dates){
+function detectPriority(text, dates, missing) {
 
-  if(/urgente|subito|oggi|entro oggi|scade oggi|scade domani|ultimo giorno/i.test(text))
+  if (
+    /\burgente\b|\bsubito\b|\bscadenza\b|\bentro oggi\b|\bentro domani\b/i.test(text)
+  ) {
     return "ALTA";
+  }
 
-  if(
-    dates.length ||
-    /devo|ancora|necessario|importante|venerdì|lunedi|martedi|mercoledi|giovedi/i.test(text)
-  )
+  if (missing.length > 0 && dates.length > 0) {
+    return "ALTA";
+  }
+
+  if (
+    /\bdevo\b|\bnecessario\b|\bimportante\b|\bappuntamento\b/i.test(text)
+  ) {
     return "MEDIA";
+  }
 
-  return "BASSA";
+  return "NORMALE";
 }
 
 
-/* -------------------------
-   SEQUENZA
-------------------------- */
-
-function buildSteps(category,tasks,missing,dates,remember,place){
-
-  const steps=[];
-
-  steps.push(...missing);
-  steps.push(...tasks);
-
-  if(dates.length)
-    steps.push("Controllare data e orario: "+dates.join(", ")+ ".");
-
-  if(place.length)
-    steps.push("Controllare il luogo: "+place.join(", ")+ ".");
-
-  steps.push(...remember);
-
-  if(category==="Bolletta / pagamento")
-    steps.push("Conservare la ricevuta dopo il pagamento.");
-
-  if(category==="Prenotazione / appuntamento")
-    steps.push("Conservare la conferma dell'appuntamento.");
-
-  return unique(steps).slice(0,7);
-}
-
-
-/* -------------------------
+/* -----------------------------
    PRIMA AZIONE
-------------------------- */
+----------------------------- */
 
-function buildFirstAction(missing,tasks,dates,place){
+function buildFirstAction(missing, tasks, remember, object) {
 
-  if(missing.length)
+  /*
+    La prima azione deve sempre privilegiare
+    ciò che blocca il resto.
+  */
+
+  if (missing.length > 0) {
+
+    if (/firmare/i.test(missing[0])) {
+      return object === "modulo"
+        ? "Firma il modulo."
+        : "Firma il documento.";
+    }
+
+    if (/pagamento/i.test(missing[0])) {
+      return "Effettua il pagamento.";
+    }
+
+    if (/acquistare/i.test(missing[0])) {
+      return "Acquista quanto necessario.";
+    }
+
+    if (/inviare/i.test(missing[0])) {
+      return "Invia il documento.";
+    }
+
+    if (/consegnare/i.test(missing[0])) {
+      return "Prepara la consegna.";
+    }
+
     return missing[0];
+  }
 
-  if(tasks.length)
+  if (tasks.length > 0) {
     return tasks[0];
+  }
 
-  if(dates.length)
-    return "Controlla subito data e orario: "+dates[0]+".";
+  if (remember.length > 0) {
+    return remember[0];
+  }
 
-  if(place.length)
-    return "Controlla subito il luogo: "+place[0]+".";
-
-  return "Individua la prima azione concreta da completare.";
+  return "Definisci la prima azione concreta.";
 }
 
 
-/* -------------------------
+/* -----------------------------
+   SEQUENZA
+----------------------------- */
+
+function buildSteps(text, missing, tasks, remember, dates, object) {
+
+  const steps = [];
+
+  /*
+    Prima le azioni bloccanti.
+  */
+
+  missing.forEach(item => {
+
+    if (!steps.includes(item)) {
+      steps.push(item);
+    }
+  });
+
+  /*
+    Poi le azioni generiche.
+  */
+
+  tasks.forEach(item => {
+
+    if (!steps.includes(item)) {
+      steps.push(item);
+    }
+  });
+
+  /*
+    Poi ciò che va ricordato.
+  */
+
+  remember.forEach(item => {
+
+    if (!steps.includes(item)) {
+      steps.push(item);
+    }
+  });
+
+  /*
+    Se c'è una data ma nessuna azione,
+    suggeriamo comunque una verifica.
+  */
+
+  if (
+    dates.length > 0 &&
+    steps.length === 0
+  ) {
+    steps.push("Verificare l'appuntamento o la scadenza indicata.");
+  }
+
+  /*
+    Se non è emerso nulla.
+  */
+
+  if (steps.length === 0) {
+    steps.push("Definire la prima azione concreta.");
+  }
+
+  return steps;
+}
+
+
+/* -----------------------------
    AVVISI
-------------------------- */
+----------------------------- */
 
-function buildWarnings(category,dates,missing,place,remember){
+function buildWarnings(text, dates, money, missing) {
 
-  const warnings=[];
+  const warnings = [];
 
-  if(!dates.length)
-    warnings.push("Nessuna data o orario rilevato.");
+  if (dates.length === 0) {
+    warnings.push("Non è stata rilevata una data o una scadenza.");
+  }
 
-  if(!place.length && /comune|appuntament|consegn|recarmi|andare/i.test(
-    document.getElementById("input").value
-  ))
-    warnings.push("Il luogo potrebbe richiedere una verifica.");
+  if (
+    /\bentro\b/i.test(text) &&
+    dates.length === 0
+  ) {
+    warnings.push("È presente un riferimento a una scadenza, ma la data non è stata identificata.");
+  }
 
-  if(!missing.length)
-    warnings.push("Non è stata rilevata un'azione ancora da completare.");
+  if (
+    money.length > 0 &&
+    missing.some(x => /pagamento/i.test(x)) &&
+    !/\bentro\b|\bscadenza\b/i.test(text)
+  ) {
+    warnings.push("È stato rilevato un importo, ma non una scadenza esplicita.");
+  }
 
-  if(!remember.length && /portare|documento|biglietto|ricord/i.test(
-    document.getElementById("input").value
-  ))
-    warnings.push("Potrebbe esserci qualcosa da portare o ricordare.");
-
-  warnings.push(
-    "Verifica sempre le informazioni direttamente sul documento o sulla comunicazione originale."
-  );
-
-  return unique(warnings);
+  return warnings;
 }
 
 
-/* -------------------------
+/* -----------------------------
    ANALISI
-------------------------- */
+----------------------------- */
 
-function analyze(){
+function analyze() {
 
-  const raw=document.getElementById("input").value;
-  const text=clean(raw);
+  const raw = document.getElementById("input").value;
 
-  if(!text){
-    alert("Scrivi prima una situazione da analizzare.");
+  const text = clean(raw);
+
+  if (!text) {
+    document.getElementById("output").innerHTML = `
+      <div class="card">
+        <p class="empty">Scrivi prima cosa devi fare.</p>
+      </div>
+    `;
     return;
   }
 
-  const category=detectCategory(text);
-  const dates=extractDateTime(text);
-  const money=extractMoney(text);
-  const place=extractPlace(text);
-  const done=extractDone(text);
-  const missing=extractMissing(text);
-  const remember=extractRemember(text);
-  const tasks=extractTasks(text);
-  const priority=detectPriority(text,dates);
+  const object = extractObject(text);
+  const dates = extractDateTime(text);
+  const money = extractMoney(text);
+  const places = extractPlace(text);
+  const done = extractDone(text);
+  const missing = extractMissing(text, object);
+  const remember = extractRemember(text, object);
+  const tasks = extractTasks(text);
 
-  const steps=buildSteps(
-    category,
-    tasks,
-    missing,
-    dates,
-    remember,
-    place
-  );
+  const category = detectCategory(text);
+  const priority = detectPriority(text, dates, missing);
 
-  const firstAction=buildFirstAction(
-    missing,
-    tasks,
-    dates,
-    place
-  );
+  const firstAction =
+    buildFirstAction(
+      missing,
+      tasks,
+      remember,
+      object
+    );
 
-  document.getElementById("category").textContent=category;
+  const steps =
+    buildSteps(
+      text,
+      missing,
+      tasks,
+      remember,
+      dates,
+      object
+    );
 
-  document.getElementById("summary").textContent=text;
+  const warnings =
+    buildWarnings(
+      text,
+      dates,
+      money,
+      missing
+    );
 
-  document.getElementById("priority").textContent=priority;
+  let html = "";
 
-  document.getElementById("firstAction").textContent=firstAction;
+  html += `
+    <div class="card">
+      <h2>Analisi</h2>
+      <span class="tag">${esc(category)}</span>
+      <span class="tag">Priorità: ${esc(priority)}</span>
+    </div>
+  `;
 
-  document.getElementById("tasks").innerHTML=valueOrEmpty(tasks);
 
-  document.getElementById("missing").innerHTML=valueOrEmpty(missing);
+  html += `
+    <div class="card">
+      <h2>FAI QUESTO ADESSO</h2>
+      <div class="big-action">
+        ${esc(firstAction)}
+      </div>
+    </div>
+  `;
 
-  document.getElementById("done").innerHTML=valueOrEmpty(done);
 
-  document.getElementById("place").innerHTML=valueOrEmpty(place);
+  html += `
+    <div class="card">
+      <h2>Sequenza</h2>
+      <ol>
+        ${steps.map(step => `<li>${esc(step)}</li>`).join("")}
+      </ol>
+    </div>
+  `;
 
-  document.getElementById("dates").innerHTML=valueOrEmpty(dates);
 
-  document.getElementById("remember").innerHTML=valueOrEmpty(remember);
+  html += `
+    <div class="card">
+      <h2>Cosa ho capito</h2>
 
-  document.getElementById("money").innerHTML=valueOrEmpty(money);
+      <p>
+        <strong>Cosa devi fare:</strong><br>
+        ${
+          tasks.length
+            ? tasks.map(x => esc(x)).join("<br>")
+            : "<span class='empty'>Nessuna azione generica rilevata.</span>"
+        }
+      </p>
 
-  document.getElementById("steps").innerHTML=
-    steps.map(step=>"<li>"+esc(step)+"</li>").join("");
+      <p>
+        <strong>Cosa manca:</strong><br>
+        ${
+          missing.length
+            ? missing.map(x => esc(x)).join("<br>")
+            : "<span class='empty'>Non sono state rilevate azioni mancanti.</span>"
+        }
+      </p>
 
-  const warnings=buildWarnings(
-    category,
-    dates,
-    missing,
-    place,
-    remember
-  );
+      <p>
+        <strong>Cosa è già fatto:</strong><br>
+        ${
+          done.length
+            ? done.map(x => esc(x)).join("<br>")
+            : "<span class='empty'>Nessuna azione già completata rilevata.</span>"
+        }
+      </p>
 
-  document.getElementById("warnings").innerHTML=
-    warnings.map(x=>"<li>"+esc(x)+"</li>").join("");
+      <p>
+        <strong>Luogo:</strong><br>
+        ${
+          places.length
+            ? places.map(x => esc(x)).join(", ")
+            : "<span class='empty'>Non rilevato.</span>"
+        }
+      </p>
 
-  document.getElementById("result").style.display="block";
+      <p>
+        <strong>Data / Ora:</strong><br>
+        ${
+          dates.length
+            ? dates.map(x => esc(x)).join(", ")
+            : "<span class='empty'>Non rilevata.</span>"
+        }
+      </p>
 
-  window.scrollTo({
-    top:document.getElementById("result").offsetTop-20,
-    behavior:"smooth"
-  });
+      <p>
+        <strong>Da portare / Ricordare:</strong><br>
+        ${
+          remember.length
+            ? remember.map(x => esc(x)).join("<br>")
+            : "<span class='empty'>Niente di specifico rilevato.</span>"
+        }
+      </p>
+    </div>
+  `;
+
+
+  if (money.length > 0) {
+
+    html += `
+      <div class="card">
+        <h2>Importi</h2>
+        <p>${money.map(x => `<span class="tag">${esc(x)}</span>`).join("")}</p>
+      </div>
+    `;
+  }
+
+
+  if (warnings.length > 0) {
+
+    html += `
+      <div class="card">
+        <h2>Cosa controllare</h2>
+        <ul>
+          ${warnings.map(x => `<li>${esc(x)}</li>`).join("")}
+        </ul>
+      </div>
+    `;
+  }
+
+
+  document.getElementById("output").innerHTML = html;
 }
 
 
-/* -------------------------
-   PULISCI
-------------------------- */
+/* -----------------------------
+   CANCELLA
+----------------------------- */
 
-function clearAll(){
+function clearAll() {
 
-  document.getElementById("input").value="";
-  document.getElementById("result").style.display="none";
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+  document.getElementById("input").value = "";
+  document.getElementById("output").innerHTML = "";
 }
 
 </script>
