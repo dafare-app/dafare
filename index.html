@@ -3,302 +3,204 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#111111">
-<title>DA FARE — dal caos all'azione</title>
+<title>DA FARE</title>
 
 <style>
-:root {
-  --bg: #f4f4f5;
-  --card: #ffffff;
-  --text: #111111;
-  --muted: #71717a;
-  --border: #e4e4e7;
-  --dark: #111111;
-  --soft: #f8f8f8;
-  --danger: #b42318;
-  --warning: #a15c00;
-  --success: #16794c;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#f4f5f7;
+  color:#171717;
 }
 
-* {
-  box-sizing: border-box;
+.container{
+  width:min(900px,92%);
+  margin:0 auto;
+  padding:32px 0 60px;
 }
 
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-               "SF Pro Text", Helvetica, Arial, sans-serif;
+header{
+  margin-bottom:24px;
 }
 
-.app {
-  width: min(760px, 100%);
-  margin: 0 auto;
-  padding: 28px 18px 60px;
+.logo{
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:2px;
+  color:#555;
 }
 
-.header {
-  padding: 12px 4px 28px;
+h1{
+  font-size:42px;
+  line-height:1;
+  margin:10px 0;
 }
 
-.logo {
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--muted);
+.subtitle{
+  color:#666;
+  font-size:17px;
 }
 
-h1 {
-  margin: 10px 0 8px;
-  font-size: clamp(38px, 9vw, 64px);
-  line-height: .95;
-  letter-spacing: -.05em;
+.card{
+  background:white;
+  border-radius:20px;
+  padding:22px;
+  margin-top:18px;
+  box-shadow:0 8px 30px rgba(0,0,0,.06);
 }
 
-.subtitle {
-  color: var(--muted);
-  font-size: 17px;
-  line-height: 1.5;
-  max-width: 560px;
+textarea{
+  width:100%;
+  min-height:190px;
+  resize:vertical;
+  border:1px solid #ddd;
+  border-radius:14px;
+  padding:16px;
+  font-size:16px;
+  line-height:1.5;
+  outline:none;
 }
 
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 20px;
-  box-shadow: 0 8px 30px rgba(0,0,0,.04);
+textarea:focus{
+  border-color:#111;
 }
 
-textarea {
-  width: 100%;
-  min-height: 210px;
-  resize: vertical;
-  border: 0;
-  outline: none;
-  background: var(--soft);
-  border-radius: 18px;
-  padding: 18px;
-  font: inherit;
-  font-size: 17px;
-  line-height: 1.5;
-  color: var(--text);
+.buttons{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
 }
 
-textarea::placeholder {
-  color: #999;
+button{
+  border:0;
+  border-radius:12px;
+  padding:13px 18px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
 }
 
-.actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 12px;
+.primary{
+  background:#111;
+  color:white;
+  flex:1;
 }
 
-button {
-  border: 0;
-  border-radius: 14px;
-  padding: 15px 18px;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
+.secondary{
+  background:#eee;
+  color:#222;
 }
 
-.primary {
-  flex: 1;
-  background: var(--dark);
-  color: white;
+.result{
+  display:none;
 }
 
-.secondary {
-  background: #ededee;
-  color: #222;
+.label{
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:1px;
+  color:#777;
+  margin-bottom:8px;
 }
 
-button:active {
-  transform: scale(.99);
+.category{
+  font-size:25px;
+  font-weight:800;
 }
 
-.examples {
-  margin-top: 14px;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.5;
+.priority{
+  display:inline-block;
+  margin-top:8px;
+  padding:7px 11px;
+  border-radius:20px;
+  background:#eee;
+  font-weight:800;
+  font-size:13px;
 }
 
-.result {
-  display: none;
-  margin-top: 18px;
+.summary{
+  margin-top:10px;
+  color:#555;
+  line-height:1.5;
 }
 
-.result.show {
-  display: block;
+.now{
+  border-left:5px solid #111;
+  background:#f5f5f5;
+  padding:18px;
+  border-radius:12px;
+  font-size:20px;
+  font-weight:800;
 }
 
-.summary {
-  border-radius: 20px;
-  padding: 20px;
-  background: #111;
-  color: white;
-  margin-bottom: 12px;
+.section{
+  margin-top:25px;
 }
 
-.summary-label {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  opacity: .65;
-  font-weight: 800;
+.section h2{
+  font-size:19px;
+  margin:0 0 12px;
 }
 
-.summary h2 {
-  margin: 7px 0 8px;
-  font-size: 25px;
-  letter-spacing: -.03em;
+ul,ol{
+  margin:0;
+  padding-left:22px;
 }
 
-.summary p {
-  margin: 0;
-  color: #d4d4d8;
-  line-height: 1.5;
+li{
+  margin:10px 0;
+  line-height:1.45;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-bottom: 12px;
+.meta{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
 
-.info {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 16px;
+.metaBox{
+  background:#f7f7f7;
+  border-radius:12px;
+  padding:14px;
 }
 
-.info-label {
-  color: var(--muted);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  font-weight: 800;
+.metaTitle{
+  font-size:12px;
+  color:#777;
+  font-weight:800;
+  margin-bottom:5px;
 }
 
-.info-value {
-  margin-top: 6px;
-  font-size: 18px;
-  font-weight: 750;
+.metaValue{
+  font-weight:700;
 }
 
-.section {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 20px;
-  margin-top: 12px;
+.warning{
+  color:#555;
+  line-height:1.5;
 }
 
-.section h3 {
-  margin: 0 0 15px;
-  font-size: 18px;
+.empty{
+  color:#888;
 }
 
-.first-action {
-  background: #f1f1f1;
-  border-radius: 15px;
-  padding: 16px;
-  font-size: 18px;
-  font-weight: 750;
-  line-height: 1.4;
-}
-
-.steps {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.steps li {
-  display: flex;
-  gap: 12px;
-  padding: 13px 0;
-  border-bottom: 1px solid #eee;
-  line-height: 1.45;
-}
-
-.steps li:last-child {
-  border-bottom: 0;
-}
-
-.number {
-  min-width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #111;
-  color: white;
-  display: grid;
-  place-items: center;
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.chip {
-  padding: 8px 11px;
-  background: #f1f1f1;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 650;
-}
-
-.priority-high {
-  color: var(--danger);
-}
-
-.priority-medium {
-  color: var(--warning);
-}
-
-.priority-low {
-  color: var(--success);
-}
-
-.empty {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.footer {
-  text-align: center;
-  color: #999;
-  font-size: 12px;
-  padding: 25px 0 0;
-}
-
-@media (max-width: 560px) {
-  .app {
-    padding: 18px 13px 45px;
+@media(max-width:600px){
+  .container{
+    padding-top:22px;
   }
 
-  .card {
-    padding: 14px;
-    border-radius: 20px;
+  h1{
+    font-size:34px;
   }
 
-  .grid {
-    grid-template-columns: 1fr;
+  .meta{
+    grid-template-columns:1fr;
   }
 
-  .actions {
-    flex-direction: column;
+  .buttons{
+    flex-direction:column;
   }
 }
 </style>
@@ -306,500 +208,424 @@ button:active {
 
 <body>
 
-<div class="app">
+<div class="container">
 
-  <header class="header">
-    <div class="logo">DA FARE</div>
-    <h1>Dal caos<br>all'azione.</h1>
-    <div class="subtitle">
-      Incolla una situazione, una richiesta o un problema.
-      DA FARE estrae ciò che conta e ti mostra cosa fare per primo.
-    </div>
-  </header>
-
-  <main class="card">
-
-    <textarea id="input"
-      placeholder="Esempio:
-
-Ho ricevuto una bolletta della luce di 87,40 €. Devo pagarla entro il 28 settembre. Non so però se la precedente è già stata pagata.
-
-Oppure incolla qualsiasi altra cosa devi gestire..."></textarea>
-
-    <div class="actions">
-      <button class="primary" onclick="analyze()">Trasforma in azioni</button>
-      <button class="secondary" onclick="clearAll()">Pulisci</button>
-    </div>
-
-    <div class="examples">
-      Prova con una bolletta, una prenotazione, una richiesta ricevuta,
-      una scadenza, un acquisto o semplicemente un problema che devi risolvere.
-    </div>
-
-    <div id="result" class="result"></div>
-
-  </main>
-
-  <div class="footer">
-    DA FARE — prototipo V0.2
+<header>
+  <div class="logo">DA FARE</div>
+  <h1>Dal caos all'azione.</h1>
+  <div class="subtitle">
+    Scrivi un problema, un messaggio o una situazione. DA FARE trova cosa conta e cosa fare adesso.
   </div>
+</header>
+
+<div class="card">
+
+<textarea id="input" placeholder="Esempio:
+Devo andare a Roma venerdì per un appuntamento alle 15:30. Non ho ancora comprato il biglietto del treno e devo ricordarmi di portare il documento."></textarea>
+
+<div class="buttons">
+  <button class="primary" onclick="analyze()">Trasforma in azioni</button>
+  <button class="secondary" onclick="clearAll()">Pulisci</button>
+</div>
+
+</div>
+
+<div id="result" class="result">
+
+<div class="card">
+
+<div class="label">ANALISI</div>
+<div id="category" class="category"></div>
+<div id="summary" class="summary"></div>
+
+<div class="section">
+<div class="label">PRIORITÀ</div>
+<div id="priority" class="priority"></div>
+</div>
+
+<div class="section">
+<div class="label">👉 FAI QUESTO ADESSO</div>
+<div id="firstAction" class="now"></div>
+</div>
+
+<div class="section">
+<h2>📋 Sequenza</h2>
+<ol id="steps"></ol>
+</div>
+
+<div class="section">
+<h2>📌 Elementi rilevati</h2>
+<div class="meta">
+
+<div class="metaBox">
+<div class="metaTitle">DATE / ORARI</div>
+<div id="dates" class="metaValue"></div>
+</div>
+
+<div class="metaBox">
+<div class="metaTitle">IMPORTI</div>
+<div id="money" class="metaValue"></div>
+</div>
+
+<div class="metaBox">
+<div class="metaTitle">COSE DA FARE</div>
+<div id="tasks" class="metaValue"></div>
+</div>
+
+<div class="metaBox">
+<div class="metaTitle">DA PORTARE / RICORDARE</div>
+<div id="remember" class="metaValue"></div>
+</div>
+
+</div>
+</div>
+
+<div class="section">
+<h2>⚠️ Cosa controllare</h2>
+<ul id="warnings"></ul>
+</div>
+
+</div>
+</div>
 
 </div>
 
 <script>
 
-function normalize(text) {
+function normalize(text){
   return text
-    .toLowerCase()
-    .replace(/\s+/g, " ")
+    .replace(/\s+/g," ")
     .trim();
 }
 
-function escapeHTML(text) {
-  return text
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+function escapeHTML(text){
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
 
-function extractMoney(text) {
+function unique(arr){
+  return [...new Set(arr.filter(Boolean))];
+}
+
+function extractMoney(text){
   const matches = text.match(
-    /(?:€\s?\d+(?:[.,]\d{1,2})?|\d+(?:[.,]\d{1,2})?\s?€|\d+(?:[.,]\d{1,2})?\s?euro)/gi
-  );
-
-  if (!matches) return [];
-
-  return [...new Set(matches)];
-}
-
-function extractDates(text) {
-  const results = [];
-
-  const numericDates = text.match(
-    /\b(?:0?[1-9]|[12]\d|3[01])[\/.-](?:0?[1-9]|1[0-2])[\/.-](?:20)?\d{2}\b/g
-  );
-
-  if (numericDates) results.push(...numericDates);
-
-  const monthDates = text.match(
-    /\b(?:entro il |il |scadenza[: ]*)?(?:[0-3]?\d)\s+(?:gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre)\b/gi
-  );
-
-  if (monthDates) results.push(...monthDates);
-
-  const relative = text.match(
-    /\b(?:oggi|domani|dopodomani|entro domani|questa settimana|la prossima settimana)\b/gi
-  );
-
-  if (relative) results.push(...relative);
-
-  return [...new Set(results)];
-}
-
-function detectCategory(text) {
-
-  const categories = [
-    {
-      name: "Bolletta / pagamento",
-      words: [
-        "bolletta","fattura","pagare","pagamento","pagata",
-        "pagato","scadenza","iban","bonifico","addebito"
-      ]
-    },
-    {
-      name: "Prenotazione / appuntamento",
-      words: [
-        "prenotazione","prenotato","appuntamento","visita",
-        "hotel","volo","treno","aereo","ristorante","biglietto"
-      ]
-    },
-    {
-      name: "Acquisto / ordine",
-      words: [
-        "ordine","acquisto","acquistato","spedizione","consegna",
-        "reso","rimborso","scontrino","garanzia"
-      ]
-    },
-    {
-      name: "Lavoro",
-      words: [
-        "lavoro","capo","collega","turno","azienda",
-        "contratto","ferie","stipendio","documento"
-      ]
-    },
-    {
-      name: "Documento / pratica",
-      words: [
-        "documento","modulo","domanda","pratica","firma",
-        "firmare","richiesta","comune","ufficio"
-      ]
-    },
-    {
-      name: "Casa",
-      words: [
-        "casa","affitto","condominio","caldaia","luce",
-        "gas","acqua","internet","manutenzione"
-      ]
-    }
-  ];
-
-  let best = {
-    name: "Problema / attività",
-    score: 0
-  };
-
-  for (const category of categories) {
-    let score = 0;
-
-    for (const word of category.words) {
-      if (text.includes(word)) score++;
-    }
-
-    if (score > best.score) {
-      best = {
-        name: category.name,
-        score
-      };
-    }
-  }
-
-  return best.name;
-}
-
-function detectPriority(text, dates) {
-
-  const urgentWords = [
-    "urgente","subito","oggi","domani","scadenza",
-    "entro","ultimo giorno","bloccato","blocco",
-    "multa","penale","ritardo"
-  ];
-
-  let score = 0;
-
-  for (const word of urgentWords) {
-    if (text.includes(word)) score++;
-  }
-
-  if (dates.length > 0) score++;
-
-  if (score >= 3) {
-    return {
-      label: "ALTA",
-      className: "priority-high"
-    };
-  }
-
-  if (score >= 1) {
-    return {
-      label: "MEDIA",
-      className: "priority-medium"
-    };
-  }
-
-  return {
-    label: "BASSA",
-    className: "priority-low"
-  };
-}
-
-function detectContacts(original) {
-
-  const emails = original.match(
-    /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi
+    /(?:€\s*)?\d+(?:[.,]\d{1,2})?\s*(?:€|euro)/gi
   ) || [];
 
-  const phones = original.match(
-    /(?:\+39[\s.-]?)?(?:3\d{2}[\s.-]?\d{6,7}|0\d{1,3}[\s.-]?\d{5,8})/g
+  return unique(matches);
+}
+
+function extractTimes(text){
+  const matches = text.match(
+    /\b(?:[01]?\d|2[0-3])[:.][0-5]\d\b/g
   ) || [];
 
-  return {
-    emails: [...new Set(emails)],
-    phones: [...new Set(phones)]
-  };
+  return unique(matches);
 }
 
-function buildSteps(category, text, dates, money) {
+function extractDates(text){
 
-  const steps = [];
+  const results=[];
 
-  if (category === "Bolletta / pagamento") {
+  const numeric =
+    text.match(
+      /\b(?:entro\s+)?(?:[0-3]?\d)[\/\-](?:0?\d|1[0-2])(?:[\/\-]\d{2,4})?\b/gi
+    ) || [];
 
-    steps.push("Controlla lo stato del pagamento o della bolletta precedente.");
+  results.push(...numeric);
 
-    if (money.length) {
-      steps.push("Verifica che l'importo richiesto corrisponda a quello indicato nel documento.");
-    }
+  const months =
+    "gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre";
 
-    if (dates.length) {
-      steps.push("Segna la scadenza e assicurati di completare il pagamento prima del termine.");
-    } else {
-      steps.push("Individua la data di scadenza prima di procedere.");
-    }
+  const monthMatches =
+    text.match(
+      new RegExp(
+        "\\b(?:entro\\s+)?\\d{1,2}\\s+(?:"+months+")\\b",
+        "gi"
+      )
+    ) || [];
 
-    steps.push("Effettua il pagamento utilizzando il metodo indicato.");
-    steps.push("Conserva la ricevuta o la conferma del pagamento.");
+  results.push(...monthMatches);
 
-  } else if (category === "Prenotazione / appuntamento") {
+  const weekdays =
+    text.match(
+      /\b(?:oggi|domani|dopodomani|lunedì|lunedi|martedì|martedi|mercoledì|mercoledi|giovedì|giovedi|venerdì|venerdi|sabato|domenica)\b/gi
+    ) || [];
 
-    steps.push("Controlla data, ora e luogo della prenotazione.");
+  results.push(...weekdays);
 
-    if (dates.length) {
-      steps.push("Segna la data dell'appuntamento o della partenza.");
-    }
+  const relative =
+    text.match(
+      /\b(?:entro\s+)?(?:questa|questo)\s+(?:settimana|mese|sera|mattina)\b/gi
+    ) || [];
 
-    steps.push("Verifica eventuali documenti o informazioni necessari.");
-    steps.push("Controlla le condizioni di modifica o cancellazione.");
-    steps.push("Conserva la conferma della prenotazione.");
+  results.push(...relative);
 
-  } else if (category === "Acquisto / ordine") {
-
-    steps.push("Controlla lo stato attuale dell'ordine o della richiesta.");
-
-    if (money.length) {
-      steps.push("Verifica importo pagato e condizioni dell'acquisto.");
-    }
-
-    steps.push("Controlla eventuale data prevista per consegna, reso o rimborso.");
-    steps.push("Se qualcosa non coincide, contatta il venditore o il servizio clienti.");
-    steps.push("Conserva ricevute, numero d'ordine e comunicazioni.");
-
-  } else if (category === "Lavoro") {
-
-    steps.push("Identifica esattamente cosa ti viene richiesto.");
-    steps.push("Raccogli i documenti o le informazioni necessarie.");
-    steps.push("Stabilisci la prima azione concreta da completare.");
-    steps.push("Esegui la richiesta e conserva eventuali conferme.");
-    steps.push("Controlla che l'attività sia effettivamente conclusa.");
-
-  } else if (category === "Documento / pratica") {
-
-    steps.push("Identifica quale documento o pratica devi completare.");
-    steps.push("Controlla quali informazioni o allegati sono necessari.");
-    steps.push("Completa e verifica il modulo o la richiesta.");
-    steps.push("Invia la documentazione attraverso il canale richiesto.");
-    steps.push("Conserva una copia e la ricevuta dell'invio.");
-
-  } else if (category === "Casa") {
-
-    steps.push("Identifica esattamente quale problema o attività riguarda la casa.");
-    steps.push("Controlla eventuali scadenze, costi o appuntamenti.");
-    steps.push("Raccogli le informazioni necessarie per intervenire.");
-    steps.push("Esegui la prima azione concreta.");
-    steps.push("Verifica che il problema sia risolto.");
-
-  } else {
-
-    steps.push("Definisci esattamente cosa deve essere risolto.");
-    steps.push("Individua la prima azione concreta che puoi fare subito.");
-    steps.push("Raccogli le informazioni o i documenti necessari.");
-    steps.push("Completa le azioni una alla volta.");
-    steps.push("Controlla che il problema sia realmente risolto.");
-  }
-
-  return steps;
+  return unique(results);
 }
 
-function buildFirstAction(category, text, dates, money) {
+function detectCategory(text){
 
-  if (category === "Bolletta / pagamento") {
-    if (text.includes("non so") || text.includes("non ricordo")) {
-      return "Controlla subito se il pagamento precedente risulta effettuato.";
-    }
-    return "Controlla la bolletta e individua importo e scadenza.";
-  }
+  if(/bollett|pagament|fattur|scadenza|bonifico|addebito|pagare/i.test(text))
+    return "Bolletta / pagamento";
 
-  if (category === "Prenotazione / appuntamento") {
-    return "Controlla subito data, ora e luogo della prenotazione.";
-  }
+  if(/appuntament|prenotaz|visita|incontro|biglietto|treno|aereo|hotel/i.test(text))
+    return "Prenotazione / appuntamento";
 
-  if (category === "Acquisto / ordine") {
-    return "Controlla subito lo stato dell'ordine e l'eventuale data prevista.";
-  }
+  if(/ordine|acquist|spedizion|consegna|amazon|pacco/i.test(text))
+    return "Acquisto / ordine";
 
-  if (category === "Lavoro") {
-    return "Individua esattamente cosa ti è stato richiesto.";
-  }
+  if(/lavoro|turno|capo|collega|azienda|ufficio|magazzino/i.test(text))
+    return "Lavoro";
 
-  if (category === "Documento / pratica") {
-    return "Controlla cosa devi compilare o inviare e quali documenti servono.";
-  }
+  if(/document|modulo|pratica|firma|comune|inps|isee|contratto/i.test(text))
+    return "Documento / pratica";
 
-  if (category === "Casa") {
-    return "Definisci il problema preciso e individua la prima azione necessaria.";
-  }
+  if(/casa|pulire|ripar|lavatrice|caldaia|spesa/i.test(text))
+    return "Casa";
 
-  return "Scrivi o individua la prima azione concreta che puoi completare adesso.";
+  return "Problema / attività";
 }
 
-function buildSummary(category, text) {
+function detectPriority(text, dates){
 
-  const firstSentence = text
-    .split(/[.!?]/)
-    .map(x => x.trim())
-    .find(x => x.length > 15);
+  if(
+    /urgente|subito|oggi|scade oggi|scade domani|entro oggi|entro domani|non posso|importante|ultimo giorno/i.test(text)
+  )
+    return "ALTA";
 
-  if (firstSentence) {
-    return firstSentence;
-  }
+  if(
+    dates.length>0 ||
+    /devo|bisogna|necessario|ricord|entro|domani|venerdì|sabato|domenica/i.test(text)
+  )
+    return "MEDIA";
 
-  return "Hai inserito una situazione che richiede una sequenza di azioni.";
+  return "BASSA";
 }
 
-function analyze() {
+function extractTasks(text){
 
-  const original = document.getElementById("input").value.trim();
-  const result = document.getElementById("result");
+  const tasks=[];
 
-  if (!original) {
-    result.classList.add("show");
-    result.innerHTML = `
-      <div class="section">
-        <h3>Mi serve qualcosa da analizzare.</h3>
-        <div class="empty">
-          Incolla una situazione, una richiesta, una scadenza
-          o un problema.
-        </div>
-      </div>
-    `;
+  if(/non ho ancora comprato|devo comprare|devo acquistare|comprare|acquistare/i.test(text))
+    tasks.push("Completare l'acquisto indicato.");
+
+  if(/devo pagare|devo effettuare il pagamento|pagare/i.test(text))
+    tasks.push("Effettuare il pagamento.");
+
+  if(/devo andare|devo recarmi|andare a|recarmi a/i.test(text))
+    tasks.push("Organizzare lo spostamento necessario.");
+
+  if(/devo chiamare|chiamare|telefonare/i.test(text))
+    tasks.push("Effettuare la chiamata necessaria.");
+
+  if(/devo inviare|inviare|mandare/i.test(text))
+    tasks.push("Inviare quanto richiesto.");
+
+  if(/devo firmare|firmare/i.test(text))
+    tasks.push("Firmare il documento richiesto.");
+
+  if(/devo controllare|controllare|verificare/i.test(text))
+    tasks.push("Controllare le informazioni indicate.");
+
+  return unique(tasks);
+}
+
+function extractRemember(text){
+
+  const items=[];
+
+  if(/documento|documenti|carta d'identità|carta di identità|passaporto/i.test(text))
+    items.push("Portare il documento necessario.");
+
+  if(/biglietto/i.test(text))
+    items.push("Avere con sé il biglietto.");
+
+  if(/ricevuta|conferma|email|mail/i.test(text))
+    items.push("Conservare la conferma o ricevuta.");
+
+  if(/chiavi/i.test(text))
+    items.push("Ricordarsi delle chiavi.");
+
+  return unique(items);
+}
+
+function buildSteps(category,text,dates,money,tasks,remember){
+
+  const steps=[];
+
+  if(tasks.length)
+    steps.push(...tasks);
+
+  if(dates.length)
+    steps.push("Controllare data e ora indicate: " + dates.join(", ") + ".");
+
+  if(money.length)
+    steps.push("Verificare l'importo: " + money.join(", ") + ".");
+
+  if(remember.length)
+    steps.push(...remember);
+
+  if(category==="Bolletta / pagamento"){
+    steps.push("Controllare che non ci siano pagamenti precedenti ancora da verificare.");
+    steps.push("Conservare la ricevuta dopo il pagamento.");
+  }
+
+  if(category==="Prenotazione / appuntamento"){
+    steps.push("Controllare luogo, data e ora dell'appuntamento.");
+    steps.push("Conservare la conferma della prenotazione.");
+  }
+
+  if(category==="Acquisto / ordine"){
+    steps.push("Controllare disponibilità, prezzo e consegna.");
+    steps.push("Conservare la conferma dell'ordine.");
+  }
+
+  if(!steps.length)
+    steps.push("Individuare la prima azione concreta necessaria.");
+
+  return unique(steps).slice(0,6);
+}
+
+function buildFirstAction(category,text,tasks,dates,remember){
+
+  if(tasks.length)
+    return tasks[0];
+
+  if(remember.length)
+    return remember[0];
+
+  if(dates.length)
+    return "Controlla subito la data o l'orario indicato: " + dates[0] + ".";
+
+  if(category==="Bolletta / pagamento")
+    return "Controlla subito stato, importo e scadenza del pagamento.";
+
+  if(category==="Prenotazione / appuntamento")
+    return "Controlla subito data, ora e luogo dell'appuntamento.";
+
+  return "Individua la prima azione concreta da completare.";
+}
+
+function buildWarnings(category,dates,money,tasks,remember){
+
+  const warnings=[];
+
+  if(!dates.length)
+    warnings.push("Nessuna data o scadenza rilevata.");
+
+  if(!money.length && category==="Bolletta / pagamento")
+    warnings.push("Nessun importo rilevato: controllalo sul documento originale.");
+
+  if(!tasks.length)
+    warnings.push("Non è stata rilevata un'azione esplicita: verifica cosa devi fare realmente.");
+
+  if(!remember.length && /document|portare|ricord/i.test(
+    document.getElementById("input").value
+  ))
+    warnings.push("Potrebbe esserci qualcosa da ricordare o portare.");
+
+  warnings.push("Verifica sempre le informazioni direttamente sul documento o sulla comunicazione originale.");
+
+  return warnings;
+}
+
+function analyze(){
+
+  const raw=document.getElementById("input").value;
+  const text=normalize(raw);
+
+  if(!text){
+    alert("Scrivi prima una situazione da analizzare.");
     return;
   }
 
-  const text = normalize(original);
+  const category=detectCategory(text);
+  const money=extractMoney(text);
+  const dates=extractDates(text);
+  const times=extractTimes(text);
+  const tasks=extractTasks(text);
+  const remember=extractRemember(text);
+  const priority=detectPriority(text,dates);
+  const steps=buildSteps(category,text,dates,money,tasks,remember);
 
-  const money = extractMoney(original);
-  const dates = extractDates(original);
-  const category = detectCategory(text);
-  const priority = detectPriority(text, dates);
-  const contacts = detectContacts(original);
-  const steps = buildSteps(category, text, dates, money);
-  const firstAction = buildFirstAction(category, text, dates, money);
-  const summary = buildSummary(category, original);
+  const allDates=unique([
+    ...dates,
+    ...times.map(t=>"ore "+t)
+  ]);
 
-  const moneyHTML = money.length
-    ? money.map(x => `<span class="chip">${escapeHTML(x)}</span>`).join("")
-    : `<span class="empty">Nessun importo rilevato</span>`;
+  const firstAction=buildFirstAction(
+    category,
+    text,
+    tasks,
+    allDates,
+    remember
+  );
 
-  const datesHTML = dates.length
-    ? dates.map(x => `<span class="chip">${escapeHTML(x)}</span>`).join("")
-    : `<span class="empty">Nessuna scadenza rilevata</span>`;
+  document.getElementById("category").textContent=category;
 
-  const contactsHTML =
-    [...contacts.emails, ...contacts.phones]
-      .map(x => `<span class="chip">${escapeHTML(x)}</span>`)
-      .join("") ||
-    `<span class="empty">Nessun contatto rilevato</span>`;
+  document.getElementById("summary").textContent=
+    text.length>180 ? text.slice(0,180)+"…" : text;
 
-  const stepsHTML = steps.map((step, index) => `
-    <li>
-      <span class="number">${index + 1}</span>
-      <span>${escapeHTML(step)}</span>
-    </li>
-  `).join("");
+  document.getElementById("priority").textContent=priority;
 
-  result.classList.add("show");
+  document.getElementById("firstAction").textContent=firstAction;
 
-  result.innerHTML = `
-    <div class="summary">
-      <div class="summary-label">Analisi</div>
-      <h2>${escapeHTML(category)}</h2>
-      <p>${escapeHTML(summary)}</p>
-    </div>
+  document.getElementById("steps").innerHTML=
+    steps.map(step=>`<li>${escapeHTML(step)}</li>`).join("");
 
-    <div class="grid">
+  document.getElementById("dates").innerHTML=
+    allDates.length
+      ? allDates.map(x=>escapeHTML(x)).join("<br>")
+      : '<span class="empty">Nessuna rilevata</span>';
 
-      <div class="info">
-        <div class="info-label">Priorità</div>
-        <div class="info-value ${priority.className}">
-          ${priority.label}
-        </div>
-      </div>
+  document.getElementById("money").innerHTML=
+    money.length
+      ? money.map(x=>escapeHTML(x)).join("<br>")
+      : '<span class="empty">Nessuno rilevato</span>';
 
-      <div class="info">
-        <div class="info-label">Azioni</div>
-        <div class="info-value">
-          ${steps.length}
-        </div>
-      </div>
+  document.getElementById("tasks").innerHTML=
+    tasks.length
+      ? tasks.map(x=>escapeHTML(x)).join("<br>")
+      : '<span class="empty">Nessuna rilevata</span>';
 
-    </div>
+  document.getElementById("remember").innerHTML=
+    remember.length
+      ? remember.map(x=>escapeHTML(x)).join("<br>")
+      : '<span class="empty">Niente rilevato</span>';
 
-    <div class="section">
-      <h3>👉 Fai questo adesso</h3>
+  const warnings=buildWarnings(
+    category,
+    allDates,
+    money,
+    tasks,
+    remember
+  );
 
-      <div class="first-action">
-        ${escapeHTML(firstAction)}
-      </div>
-    </div>
+  document.getElementById("warnings").innerHTML=
+    warnings.map(x=>`<li>${escapeHTML(x)}</li>`).join("");
 
-    <div class="section">
-      <h3>📋 Sequenza</h3>
+  document.getElementById("result").style.display="block";
 
-      <ol class="steps">
-        ${stepsHTML}
-      </ol>
-    </div>
-
-    <div class="grid">
-
-      <div class="section">
-        <h3>📅 Scadenze</h3>
-        <div class="chips">
-          ${datesHTML}
-        </div>
-      </div>
-
-      <div class="section">
-        <h3>💰 Importi</h3>
-        <div class="chips">
-          ${moneyHTML}
-        </div>
-      </div>
-
-    </div>
-
-    <div class="section">
-      <h3>📞 Contatti rilevati</h3>
-      <div class="chips">
-        ${contactsHTML}
-      </div>
-    </div>
-
-    <div class="section">
-      <h3>⚠️ Cosa controllare</h3>
-
-      <ul class="steps">
-        <li>
-          <span class="number">!</span>
-          <span>
-            Verifica sempre le informazioni direttamente
-            sul documento o sulla comunicazione originale.
-          </span>
-        </li>
-
-        <li>
-          <span class="number">!</span>
-          <span>
-            Se manca una data, un importo o un'informazione
-            fondamentale, non dare per scontato che sia presente.
-          </span>
-        </li>
-      </ul>
-    </div>
-  `;
-
-  result.scrollIntoView({
-    behavior: "smooth",
-    block: "start"
+  window.scrollTo({
+    top:document.getElementById("result").offsetTop-20,
+    behavior:"smooth"
   });
 }
 
-function clearAll() {
-  document.getElementById("input").value = "";
-  const result = document.getElementById("result");
-  result.innerHTML = "";
-  result.classList.remove("show");
+function clearAll(){
+
+  document.getElementById("input").value="";
+  document.getElementById("result").style.display="none";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
 </script>
